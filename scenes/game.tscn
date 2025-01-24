@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dn506tw3f4unj"]
+
+[node name="game" type="Node2D"]
+
+[node name="bubble" type="Node2D" parent="."]
