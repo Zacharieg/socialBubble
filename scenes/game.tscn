@@ -1,5 +1,16 @@
-[gd_scene format=3 uid="uid://dn506tw3f4unj"]
+[gd_scene load_steps=5 format=3 uid="uid://dn506tw3f4unj"]
+
+[ext_resource type="PackedScene" uid="uid://ix2oq52a3tjn" path="res://objects/character.tscn" id="1_hh7su"]
+[ext_resource type="Script" path="res://scripts/character.gd" id="2_brbik"]
+[ext_resource type="Script" path="res://scripts/ennemySpawner.gd" id="3_p7uip"]
+[ext_resource type="PackedScene" uid="uid://bcexypev1abcv" path="res://objects/ennemy.tscn" id="4_2lmlg"]
 
 [node name="game" type="Node2D"]
 
-[node name="bubble" type="Node2D" parent="."]
+[node name="character" parent="." instance=ExtResource("1_hh7su")]
+script = ExtResource("2_brbik")
+
+[node name="ennemy_spawner" type="Node2D" parent="."]
+script = ExtResource("3_p7uip")
+
+[node name="ennemy" parent="ennemy_spawner" instance=ExtResource("4_2lmlg")]
