@@ -64,6 +64,10 @@ func is_ennemy_on_shields(ennemy : Ennemy) -> bool:
 
 func is_ennemy_on_shield(ennemy : Ennemy, shield_number : int = 0) -> bool:
 	var ennemy_angle = ennemy.rotation
+	while ennemy_angle < 0:
+		ennemy_angle += 2*PI
+	while ennemy_angle > 2*PI:
+		ennemy_angle -= 2*PI
 	var start_angle = get_start_angle(shield_number)
 	var end_angle = get_end_angle(shield_number)
 	

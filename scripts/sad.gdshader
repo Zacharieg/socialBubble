@@ -7,7 +7,7 @@ uniform float brightness_change = -0.2;
 
 void fragment() {
 	vec4 default_color = texture(TEXTURE, UV);
-	vec2 vortex_uv = UV / 0.5 - vec2(0.498);
+	vec2 vortex_uv = UV;
 	vec4 vortex = texture(vortex_texture, vortex_uv);
 
 	float brightness = (default_color.r + default_color.g + default_color.b)/3. + brightness_change;

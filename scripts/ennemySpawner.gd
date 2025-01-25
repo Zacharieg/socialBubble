@@ -4,9 +4,8 @@ class_name EnnemySpawner
 @onready var spawn_dist = get_viewport_rect().size.x/2
 @export var inbetween_spawning_time = 2.0
 @onready var inbetween_rand_time = 0.0
-@onready var initial_angle = 0
-
-@export var difficulty_angle_max = 100
+@onready var last_angle : float = randf_range(0, 2*PI)
+var difficulty_angle_max : float = PI/2
 
 var timer: Timer
 
@@ -37,18 +36,28 @@ func set_spawning_timer():
 	# Démarrer le timer
 	timer.start()
 
+func get_enemy_new_angle() -> float:
+	var new_angle : float = randf_range(
+		last_angle - difficulty_angle_max/2.,
+		last_angle - difficulty_angle_max/2.,
+	)
+	print("last_angle" + str(last_angle))
+	print("new_angle" + str(new_angle))
+	last_angle = new_angle
+	return new_angle 
+
 func spawnEnnemy():
 	var initial_pos = Vector2(0,0)
-	initial_angle = deg_to_rad(randi_range(initial_angle,initial_angle+difficulty_angle_max))
-	var x_from_character = cos(initial_angle) * spawn_dist
-	var y_from_character = sin(initial_angle) * spawn_dist
+	var angle = get_enemy_new_angle()
+	var x_from_character = cos(angle) * spawn_dist
+	var y_from_character = sin(angle) * spawn_dist
 	var center = get_viewport_rect().size / 2
 	
 	initial_pos = Vector2(x_from_character, y_from_character) + center
 	
 	var ennemy = preload("res://objects/ennemy.tscn").instantiate()
 	ennemy.position = initial_pos
-	ennemy.rotation = initial_angle
+	ennemy.rotation = angle
 	get_tree().get_root().get_node("game").add_child(ennemy)
 	
 func pause_spawner():

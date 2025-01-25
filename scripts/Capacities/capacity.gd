@@ -23,6 +23,8 @@ var is_running = false
 func _ready() -> void:
 	is_running = false
 	capacity_cooldown = 0.
+	jaugeMat.set_shader_parameter('albedo', Color.WHITE)
+	jaugeMat.set_shader_parameter('fV', capacity_jauge)
 
 func _process(delta: float) -> void:
 	if not is_running : 
@@ -42,7 +44,7 @@ func _process(delta: float) -> void:
 func reduce_capacity_cooldown():
 	capacity_cooldown += TIME_COOLDOWN_GAINED_WHEN_PERFECT
 	capacity_time += TIME_EFFECT_GAINED_WHEN_PERFECT
-	capacity_time = min(capacity_time, capacity_time_effect)
+	capacity_time = min(capacity_time, capacity_time_effect) 
 
 func fire():
 	is_running = true

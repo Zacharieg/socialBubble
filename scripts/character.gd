@@ -7,6 +7,7 @@ class_name Character
 
 const MAX_HIT_POINT = 1
 const HIT_WINDOW = 0.2
+const ACTION_COOLDOWN = 0.2
 
 @onready var shield : Shield = $shield
 
@@ -18,7 +19,6 @@ const HIT_WINDOW = 0.2
 
 var time_since_action : float = 100.
 
-
 func _ready() -> void:
 	#position = get_viewport_rect().size / 2.
 	get_tree().get_root().get_node("game/ui/VBoxContainer/life_label").text = str("PV : ", life)
@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_since_action += delta
-	if Input.is_action_pressed("action"):
+	if Input.is_action_just_pressed("action") && time_since_action > ACTION_COOLDOWN:
 		$AnimationPlayer.play("bounce")
 		time_since_action = 0.
 
@@ -88,4 +88,3 @@ func _on_capacity_fired(cap : Capacity) -> void:
 
 func _on_capacity_ended(cap : Capacity) -> void:
 	cap.end_effect(self)
-

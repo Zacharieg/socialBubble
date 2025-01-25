@@ -13,8 +13,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v0f0t"]
 shader = ExtResource("5_bfbvu")
-shader_parameter/saturation = 0.25
-shader_parameter/brightness_change = -0.2
+shader_parameter/saturation = 0.5
+shader_parameter/brightness_change = -0.4
 shader_parameter/vortex_texture = ExtResource("6_ye1j6")
 
 [sub_resource type="Animation" id="Animation_nswt7"]
@@ -54,6 +54,21 @@ _data = {
 "new_day": SubResource("Animation_uu2vu")
 }
 
+[sub_resource type="Animation" id="Animation_laf8i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_phmh6"]
 resource_name = "game_over"
 length = 2.0
@@ -70,21 +85,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_laf8i"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kltvp"]
 _data = {
 "RESET": SubResource("Animation_laf8i"),
@@ -96,7 +96,6 @@ script = ExtResource("1_i7wcn")
 
 [node name="ennemy_spawner" type="Node2D" parent="."]
 script = ExtResource("3_p7uip")
-difficulty_angle_max = 120
 
 [node name="level" type="Node2D" parent="."]
 position = Vector2(250, 250)

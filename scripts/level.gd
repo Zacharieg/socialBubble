@@ -44,9 +44,9 @@ func start_new_day_after_anim():
 	get_tree().get_root().get_node("game/ennemy_spawner").set_spawning_timer()
 	
 	#L'angle de génération des ennemis est de plus en plus élevé
-	if get_tree().get_root().get_node("game/ennemy_spawner").difficulty_angle_max + difficulty_increase_angle <= 359:
-		get_tree().get_root().get_node("game/ennemy_spawner").difficulty_angle_max += difficulty_increase_angle
-	else : get_tree().get_root().get_node("game/ennemy_spawner").difficulty_angle_max = 359
+	
+	get_tree().get_root().get_node("game/ennemy_spawner").difficulty_angle_max += PI/4
+	
 	set_day_timer()
 	pass
 
