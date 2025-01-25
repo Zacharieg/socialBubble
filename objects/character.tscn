@@ -71,7 +71,8 @@ animations = [{
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l4sa0"]
 shader = ExtResource("5_lpeis")
 shader_parameter/fV = 0.65
-shader_parameter/transparency = 0.5
+shader_parameter/transparency = 1.0
+shader_parameter/thickness = 0.1
 
 [sub_resource type="Gradient" id="Gradient_jcqog"]
 

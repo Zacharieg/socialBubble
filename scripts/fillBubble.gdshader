@@ -18,12 +18,15 @@ shader_type canvas_item;
 // fV = fill value
 uniform float fV;
 uniform float transparency = 0.5;
+uniform float thickness = 0.1;
 
 void fragment() {
     vec2 uv = ((UV / -0.50)) + vec2(1,1);
 
     float
-		sdf=length(uv),c=step(sdf,1.),
+		sdf=length(uv),
+		
+		c=step(sdf,1.) - step(sdf,1.-thickness),
 		
         vB=smoothstep(.1,.9,sin(uv.x+(PI*.5))-.3),
 		vBA=vB*sin(TIME*4.)*.1,
