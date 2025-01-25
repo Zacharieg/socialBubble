@@ -9,6 +9,7 @@
 
 [node name="ennemy_spawner" type="Node2D" parent="."]
 script = ExtResource("3_p7uip")
+difficulty_angle_max = 200
 
 [node name="level" type="Node2D" parent="."]
 position = Vector2(250, 250)
@@ -23,10 +24,6 @@ position = Vector2(249, 245)
 [node name="ui" type="CanvasLayer" parent="."]
 
 [node name="Label" type="Label" parent="ui"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
-grow_vertical = 0
+offset_right = 140.0
+offset_bottom = 23.0
 text = "Démarrage du jeu"
