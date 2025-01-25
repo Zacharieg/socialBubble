@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://scripts/shield.gd" id="1_33xqs"]
 
 [node name="shield" type="Node2D"]
+z_index = 4096
 script = ExtResource("1_33xqs")
