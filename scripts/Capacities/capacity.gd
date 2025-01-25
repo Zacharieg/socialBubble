@@ -9,6 +9,7 @@ signal capacity_fired
 
 var capacity_current_cooldown: float
 var capacity_current_time_effect: float
+var capacity_available:= true
 
 func _ready() -> void:
 	reset()
@@ -20,8 +21,10 @@ func reset():
 func _process(delta: float) -> void:
 	if (capacity_current_cooldown > 0.):
 		capacity_current_cooldown -= delta
+		if (capacity_current_cooldown <= 0.):
+			print("capa ready")
 
-func fire(char: Character):
+func fire(_charac: Character):
 	reset()
 	capacity_fired.emit()
 	
