@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dn506tw3f4unj"]
+[gd_scene load_steps=9 format=3 uid="uid://dn506tw3f4unj"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ap1hq"]
 [ext_resource type="PackedScene" uid="uid://ix2oq52a3tjn" path="res://objects/character.tscn" id="1_hh7su"]
 [ext_resource type="Texture2D" uid="uid://cyf0a1rydt22j" path="res://ressources/Chambre.png" id="3_7ka2y"]
 [ext_resource type="Script" path="res://scripts/ennemySpawner.gd" id="3_p7uip"]
 [ext_resource type="Shader" path="res://scripts/sad.gdshader" id="5_bfbvu"]
+[ext_resource type="Texture2D" uid="uid://jufifqtyo537" path="res://ressources/01_Justin.png" id="6_cli5u"]
 [ext_resource type="Texture2D" uid="uid://bs6com8xioine" path="res://ressources/vortex.png" id="6_ye1j6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v0f0t"]
@@ -27,8 +28,11 @@ material = SubResource("ShaderMaterial_v0f0t")
 position = Vector2(6, 6)
 texture = ExtResource("3_7ka2y")
 
+[node name="character_Sprite2D" type="Sprite2D" parent="level"]
+texture = ExtResource("6_cli5u")
+
 [node name="character" parent="." instance=ExtResource("1_hh7su")]
-position = Vector2(249, 245)
+position = Vector2(255, 255)
 
 [node name="ui" type="CanvasLayer" parent="."]
 

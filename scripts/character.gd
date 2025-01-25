@@ -45,7 +45,7 @@ func hit_ennemy(ennemy : Ennemy):
 		if perfect_stop:
 			stop_perfect()
 	else :
-		hurt()
+		hurt(ennemy)
 	ennemy.die(perfect_stop)
 
 func stop_perfect():
@@ -54,12 +54,15 @@ func stop_perfect():
 		capacity.capacity_current_cooldown -= capacity.TIME_GAINED_WHEN_PERFECT
 		print(capacity.capacity_current_cooldown)
 
-func hurt():
+func hurt(ennemy : Ennemy):
 	life -= 1
 	get_tree().get_root().get_node("game/ui/VBoxContainer/life_label").text = str("PV : ", life)
 	if life == 0:game_over()
-	#print("do nothing")
-	
+	$bubble/bubble_sprite.rotation = ennemy.rotation
+	$bubble/bubble_sprite.play("impact")
+	await $bubble/bubble_sprite.animation_finished
+	$bubble/bubble_sprite.play("default")
+
 func game_over():
 	get_tree().quit()
 

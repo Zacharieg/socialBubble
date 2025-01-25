@@ -1,45 +1,23 @@
-[gd_scene load_steps=18 format=3 uid="uid://ix2oq52a3tjn"]
+[gd_scene load_steps=20 format=3 uid="uid://ix2oq52a3tjn"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_v03po"]
 [ext_resource type="PackedScene" uid="uid://ceghceufd6ax1" path="res://objects/shield.tscn" id="1_x8j2g"]
-[ext_resource type="Texture2D" uid="uid://jufifqtyo537" path="res://ressources/01_Justin.png" id="3_88i3k"]
-[ext_resource type="Texture2D" uid="uid://o8r6f4qft0kl" path="res://ressources/bubbleWHITE_impact.png" id="4_4mrax"]
+[ext_resource type="Shader" path="res://scripts/bubble.gdshader" id="3_lersi"]
+[ext_resource type="Texture2D" uid="uid://dumga0ohgp711" path="res://ressources/bulle anim/bulle_0000.png" id="3_ogs73"]
+[ext_resource type="Texture2D" uid="uid://drijwg1go25tq" path="res://ressources/bulle anim/bulle_0001.png" id="4_3h0gx"]
+[ext_resource type="Texture2D" uid="uid://xi8cxqukop0v" path="res://ressources/bulle anim/bulle_0002.png" id="5_crlvq"]
 [ext_resource type="Shader" path="res://scripts/fillBubble.gdshader" id="5_lpeis"]
 [ext_resource type="PackedScene" uid="uid://dkc1wtouk1oe5" path="res://scripts/Enlargment.tscn" id="5_u8sxo"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6cukv"]
-atlas = ExtResource("4_4mrax")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vfuhd"]
-atlas = ExtResource("4_4mrax")
-region = Rect2(0, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vdnn4"]
-atlas = ExtResource("4_4mrax")
-region = Rect2(256, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_a38hm"]
-atlas = ExtResource("4_4mrax")
-region = Rect2(512, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ik0wx"]
-atlas = ExtResource("4_4mrax")
-region = Rect2(768, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_yh61h"]
-atlas = ExtResource("4_4mrax")
-region = Rect2(1024, 0, 256, 256)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jvxc6"]
-atlas = ExtResource("4_4mrax")
-region = Rect2(1280, 0, 256, 256)
+[ext_resource type="Texture2D" uid="uid://1vc82y0bmals" path="res://ressources/bulle anim/bulle_0003.png" id="6_3354a"]
+[ext_resource type="Texture2D" uid="uid://c3vcphlev2jv3" path="res://ressources/bulle anim/bulle_0004.png" id="7_c6gbm"]
+[ext_resource type="Texture2D" uid="uid://b6b78wx13femt" path="res://ressources/bulle anim/bulle_0005.png" id="8_u7ac7"]
+[ext_resource type="Texture2D" uid="uid://bvq4v4eff6nu2" path="res://ressources/bulle anim/bulle_0006.png" id="9_8jo72"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qx4be"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6cukv")
+"texture": ExtResource("3_ogs73")
 }],
 "loop": true,
 "name": &"default",
@@ -47,34 +25,47 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vfuhd")
+"texture": ExtResource("4_3h0gx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vdnn4")
+"texture": ExtResource("5_crlvq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_a38hm")
+"texture": ExtResource("6_3354a")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ik0wx")
+"texture": ExtResource("7_c6gbm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_yh61h")
+"texture": ExtResource("8_u7ac7")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jvxc6")
+"texture": ExtResource("9_8jo72")
 }],
 "loop": false,
 "name": &"impact",
-"speed": 24.0
+"speed": 12.0
 }]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6guva"]
+shader = ExtResource("3_lersi")
+shader_parameter/bottom_color = Color(1, 0.670588, 0.403922, 1)
+shader_parameter/top_color = Color(0.196078, 0.560784, 0.615686, 1)
+shader_parameter/wave_amp = 0.094
+shader_parameter/wave_size = 1.375
+shader_parameter/wave_time_mul = 0.991
+shader_parameter/total_phases = 6
+
+[sub_resource type="Gradient" id="Gradient_iuiw4"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdgf8"]
+gradient = SubResource("Gradient_iuiw4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l4sa0"]
 shader = ExtResource("5_lpeis")
 shader_parameter/fV = 0.65
-shader_parameter/transparency = 1.0
-shader_parameter/thickness = 0.1
-
+shader_parameter/transparency = 0.8
+shader_parameter/thickness = 0.2
 
 [sub_resource type="Gradient" id="Gradient_jcqog"]
 
@@ -93,19 +84,21 @@ script = ExtResource("1_v03po")
 position = Vector2(1, 0)
 
 [node name="bubble_sprite" type="AnimatedSprite2D" parent="bubble"]
-visible = false
-modulate = Color(1, 1, 1, 0.392157)
-clip_children = 2
+clip_children = 1
+scale = Vector2(0.140741, 0.140741)
 sprite_frames = SubResource("SpriteFrames_qx4be")
+animation = &"impact"
 autoplay = "default"
+
+[node name="wave_texture" type="Sprite2D" parent="bubble/bubble_sprite"]
+material = SubResource("ShaderMaterial_6guva")
+scale = Vector2(17.9852, 17.9852)
+texture = SubResource("GradientTexture2D_gdgf8")
 
 [node name="jauge" type="Sprite2D" parent="bubble"]
 material = SubResource("ShaderMaterial_l4sa0")
-scale = Vector2(2, 2)
+scale = Vector2(1.59375, 1.59375)
 texture = SubResource("GradientTexture2D_xskia")
-
-[node name="character_Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_88i3k")
 
 [node name="Enlargment" parent="." instance=ExtResource("5_u8sxo")]
 capacity_base_cooldown = 120.0
