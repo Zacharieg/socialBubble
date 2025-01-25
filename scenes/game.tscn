@@ -9,7 +9,6 @@
 
 [node name="ennemy_spawner" type="Node2D" parent="."]
 script = ExtResource("3_p7uip")
-difficulty_angle_max = 200
 
 [node name="level" type="Node2D" parent="."]
 position = Vector2(250, 250)
@@ -23,7 +22,14 @@ position = Vector2(249, 245)
 
 [node name="ui" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="ui"]
-offset_right = 140.0
-offset_bottom = 23.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ui"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="day_label" type="Label" parent="ui/VBoxContainer"]
+layout_mode = 2
 text = "Démarrage du jeu"
+
+[node name="life_label" type="Label" parent="ui/VBoxContainer"]
+layout_mode = 2
+text = "Vie du personnage"

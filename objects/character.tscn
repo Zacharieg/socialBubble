@@ -88,6 +88,7 @@ script = ExtResource("1_v03po")
 [node name="hurtBox" type="CollisionShape2D" parent="."]
 
 [node name="bubble" type="Node2D" parent="."]
+position = Vector2(1, 0)
 
 [node name="bubble_sprite" type="AnimatedSprite2D" parent="bubble"]
 visible = false

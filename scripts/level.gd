@@ -18,7 +18,7 @@ func _ready() -> void:
 func new_day():
 	#print("the day starts")
 	#print("Current day : ", current_day)
-	get_tree().get_root().get_node("game/ui/Label").text = str("Jour n° ", current_day)
+	get_tree().get_root().get_node("game/ui/VBoxContainer/day_label").text = str("Jour n° ", current_day)
 	
 	#Les ennemis sont générés de plus en plus fréquemment
 	get_tree().get_root().get_node("game/ennemy_spawner").inbetween_spawning_time -= difficulty_frequency_diminishing

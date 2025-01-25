@@ -1,6 +1,10 @@
 extends Area2D
 class_name Character
 
+# Vie = nombre de fois que le joueur peut être touché avant de mourir
+@export var max_life = 3
+@onready var life = max_life
+
 const MAX_HIT_POINT = 1
 const HIT_WINDOW = 0.2
 
@@ -12,6 +16,7 @@ var time_since_action : float = 100.
 
 func _ready() -> void:
 	#position = get_viewport_rect().size / 2.
+	get_tree().get_root().get_node("game/ui/VBoxContainer/life_label").text = str("PV : ", life)
 	hurtBox.shape = CircleShape2D.new()
 	hurtBox.shape.radius = shield.SHIELD_RADIUS - shield.SHIELD_THICKNESS/2
 
@@ -36,8 +41,13 @@ func stop_perfect():
 	pass
 
 func hurt():
-	get_tree().quit()
+	life -= 1
+	get_tree().get_root().get_node("game/ui/VBoxContainer/life_label").text = str("PV : ", life)
+	if life == 0:game_over()
 	#print("do nothing")
+	
+func game_over():
+	get_tree().quit()
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Ennemy:
