@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkc1wtouk1oe5"]
+
+[ext_resource type="Script" path="res://scripts/Capacities/enlargment.gd" id="1_rlwx5"]
+
+[node name="Enlargment" type="Node"]
+script = ExtResource("1_rlwx5")
+capacity_name = "Enlargment"
+capacity_base_cooldown = 10.0

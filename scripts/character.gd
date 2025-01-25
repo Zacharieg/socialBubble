@@ -12,7 +12,10 @@ const HIT_WINDOW = 0.2
 
 @onready var hurtBox : CollisionShape2D = $hurtBox
 
+@onready var capacity : Capacity = $Enlargment
+
 var time_since_action : float = 100.
+
 
 func _ready() -> void:
 	#position = get_viewport_rect().size / 2.
@@ -24,6 +27,8 @@ func _process(delta: float) -> void:
 	time_since_action += delta
 	if Input.is_action_pressed("action"):
 		time_since_action = 0.
+		if capacity.capacity_available and capacity.capacity_current_cooldown <= 0.:
+			capacity.fire(self)
 
 func hit_ennemy(ennemy : Ennemy):
 	ennemy.dead = true
