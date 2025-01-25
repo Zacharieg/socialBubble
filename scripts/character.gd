@@ -9,12 +9,11 @@ const HIT_WINDOW = 0.2
 @onready var hurtBox : CollisionShape2D = $hurtBox
 
 func _ready() -> void:
-	position = get_viewport_rect().size / 2.
+	#position = get_viewport_rect().size / 2.
 	hurtBox.shape = CircleShape2D.new()
 	hurtBox.shape.radius = shield.SHIELD_RADIUS - shield.SHIELD_THICKNESS/2
 
 func hit_ennemy(ennemy : Ennemy):
-	var ennemy_angle = ennemy.rotation
 	ennemy.die()
 	if not is_shield_on_ennemy(ennemy):
 		hurt()
@@ -30,7 +29,8 @@ func is_shield_on_ennemy(ennemy : Ennemy) -> bool:
 		return ennemy_angle < end_angle or ennemy_angle > start_angle
 
 func hurt():
-	get_tree().quit()
+	#get_tree().quit()
+	print("do nothing")
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Ennemy:
