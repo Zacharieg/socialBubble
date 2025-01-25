@@ -1,7 +1,7 @@
 extends Area2D
 class_name Ennemy
 
-const SPEED = 100
+@export var speed = 220
 
 var dead = false
 
@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 func move_to(delta):
 	if not dead :
 		var direction = Vector2.LEFT.rotated(rotation).normalized()
-		position += direction * SPEED * delta
+		position += direction * speed * delta
 
 func spawn():
 	pass

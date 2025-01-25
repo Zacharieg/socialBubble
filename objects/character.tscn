@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_v03po"]
 [ext_resource type="PackedScene" uid="uid://ceghceufd6ax1" path="res://objects/shield.tscn" id="1_x8j2g"]
-[ext_resource type="Texture2D" uid="uid://8ke3u7lax42s" path="res://ressources/LAPIN sans Chambre.png" id="3_a2lqq"]
+[ext_resource type="Texture2D" uid="uid://jufifqtyo537" path="res://ressources/01_Justin.png" id="3_88i3k"]
 [ext_resource type="Texture2D" uid="uid://o8r6f4qft0kl" path="res://ressources/bubbleWHITE_impact.png" id="4_4mrax"]
 [ext_resource type="Shader" path="res://scripts/fillBubble.gdshader" id="5_lpeis"]
 
@@ -87,9 +87,6 @@ script = ExtResource("1_v03po")
 
 [node name="hurtBox" type="CollisionShape2D" parent="."]
 
-[node name="character_Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_a2lqq")
-
 [node name="bubble" type="Node2D" parent="."]
 
 [node name="bubble_sprite" type="AnimatedSprite2D" parent="bubble"]
@@ -103,5 +100,8 @@ autoplay = "default"
 material = SubResource("ShaderMaterial_l4sa0")
 scale = Vector2(2, 2)
 texture = SubResource("GradientTexture2D_xskia")
+
+[node name="character_Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_88i3k")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

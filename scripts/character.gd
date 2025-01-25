@@ -36,8 +36,8 @@ func stop_perfect():
 	pass
 
 func hurt():
-	#get_tree().quit()
-	print("do nothing")
+	get_tree().quit()
+	#print("do nothing")
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Ennemy:
