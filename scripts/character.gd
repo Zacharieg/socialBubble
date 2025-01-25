@@ -12,7 +12,7 @@ const HIT_WINDOW = 0.2
 
 @onready var hurtBox : CollisionShape2D = $hurtBox
 
-@onready var capacity : Capacity = $Enlargment
+@onready var capacity : Capacity = $MoreShield
 
 @onready var jauge = $bubble/jauge
 
