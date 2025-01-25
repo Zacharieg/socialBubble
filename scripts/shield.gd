@@ -1,6 +1,7 @@
 extends Node2D
 class_name Shield
 
+
 const SHIELD_RADIUS : float = 62
 const SHIELD_INITIAL_SIZE : float = 0.2
 const SHIELD_THICKNESS : float = 10
