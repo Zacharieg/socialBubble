@@ -32,15 +32,12 @@ func set_spawning_timer():
 		timer.set_wait_time(0.1)
 	else:
 		timer.set_wait_time(inbetween_spawning_time + inbetween_rand_time)
-	print("wait time : ", timer.wait_time)
 	timer.set_one_shot(false)
 	
 	# Démarrer le timer
 	timer.start()
 
 func spawnEnnemy():
-	print("ennemy spawned !")
-	print("temps restant : ", timer.time_left)
 	var initial_pos = Vector2(0,0)
 	initial_angle = deg_to_rad(randi_range(initial_angle,initial_angle+difficulty_angle_max))
 	var x_from_character = cos(initial_angle) * spawn_dist
@@ -53,3 +50,11 @@ func spawnEnnemy():
 	ennemy.position = initial_pos
 	ennemy.rotation = initial_angle
 	get_tree().get_root().get_node("game").add_child(ennemy)
+	
+func pause_spawner():
+	timer.stop()
+
+
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	get_tree().get_root().get_node("game/level").start_new_day_after_anim()
+	pass # Replace with function body.

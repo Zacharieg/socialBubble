@@ -1,14 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn506tw3f4unj"]
+[gd_scene load_steps=9 format=3 uid="uid://dn506tw3f4unj"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ap1hq"]
 [ext_resource type="PackedScene" uid="uid://ix2oq52a3tjn" path="res://objects/character.tscn" id="1_hh7su"]
 [ext_resource type="Texture2D" uid="uid://cyf0a1rydt22j" path="res://ressources/Chambre.png" id="3_7ka2y"]
 [ext_resource type="Script" path="res://scripts/ennemySpawner.gd" id="3_p7uip"]
+[ext_resource type="Texture2D" uid="uid://w4btp0kdyslx" path="res://ressources/black_screen.png" id="5_ycsj1"]
+
+[sub_resource type="Animation" id="Animation_nswt7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/foreground:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uu2vu"]
+resource_name = "new_day"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/foreground:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333334, 1.43333, 3.66667, 4.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.686275), Color(1, 1, 1, 0.686275), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b7gk8"]
+_data = {
+"RESET": SubResource("Animation_nswt7"),
+"new_day": SubResource("Animation_uu2vu")
+}
 
 [node name="game" type="Node2D"]
 
 [node name="ennemy_spawner" type="Node2D" parent="."]
 script = ExtResource("3_p7uip")
+difficulty_angle_max = 120
 
 [node name="level" type="Node2D" parent="."]
 position = Vector2(250, 250)
@@ -26,10 +65,35 @@ position = Vector2(249, 245)
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="day_label" type="Label" parent="ui/VBoxContainer"]
-layout_mode = 2
-text = "Démarrage du jeu"
-
 [node name="life_label" type="Label" parent="ui/VBoxContainer"]
 layout_mode = 2
 text = "Vie du personnage"
+
+[node name="foreground" type="Sprite2D" parent="ui"]
+position = Vector2(257, 257)
+texture = ExtResource("5_ycsj1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ui/foreground"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_b7gk8")
+}
+
+[node name="day_label" type="Label" parent="ui/foreground"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -267.5
+offset_right = -184.0
+offset_bottom = -244.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(72, 10.5)
+text = "Démarrage du jeu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="animation_finished" from="ui/foreground/AnimationPlayer" to="ennemy_spawner" method="_on_animation_player_animation_finished"]
