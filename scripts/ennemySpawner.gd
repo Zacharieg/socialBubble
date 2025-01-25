@@ -2,15 +2,15 @@ extends Node2D
 class_name EnnemySpawner
 
 @onready var spawn_dist = get_viewport_rect().size.x/2
+@onready var inbetween_spawning_time = 2.0
+@onready var inbetween_rand_time = 0.0
 
-#func _process(delta):
-	#var timer = SceneTree.create_timer()
-	#spawnEnnemy()
-	#queue_free()
-	
 var timer: Timer
 
 func _ready():
+	set_spawning_timer()
+	
+func set_spawning_timer():
 	position = get_viewport_rect().size / 2.
 	
 	# Créer un timer
@@ -18,7 +18,13 @@ func _ready():
 	add_child(timer)
 	
 	# Configurer le timer pour qu'il se déclenche toutes les 2 secondes
-	timer.set_wait_time(2.0)
+	#randomize value
+	inbetween_rand_time = randf_range(0.0, 0.5)
+	if inbetween_spawning_time + inbetween_rand_time <= 0.1:
+		timer.set_wait_time(0.1)
+	else:
+		timer.set_wait_time(inbetween_spawning_time + inbetween_rand_time)
+	print("wait time", timer.wait_time)
 	timer.set_one_shot(false)
 	
 	# Connecter le signal timeout du timer à la fonction spawnEnnemy
