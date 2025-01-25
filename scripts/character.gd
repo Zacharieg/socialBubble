@@ -15,18 +15,8 @@ func _ready() -> void:
 
 func hit_ennemy(ennemy : Ennemy):
 	ennemy.die()
-	if not is_shield_on_ennemy(ennemy):
+	if not shield.is_ennemy_on_shields(ennemy):
 		hurt()
-
-func is_shield_on_ennemy(ennemy : Ennemy) -> bool:
-	var ennemy_angle = ennemy.rotation
-	var start_angle = shield.get_start_angle()
-	var end_angle = shield.get_end_angle()
-	
-	if start_angle < end_angle :
-		return ennemy_angle > start_angle and ennemy_angle < end_angle
-	else :
-		return ennemy_angle < end_angle or ennemy_angle > start_angle
 
 func hurt():
 	#get_tree().quit()
