@@ -12,6 +12,7 @@ var shield_speed : float = SHIELD_INITIAL_SPEED
 var shield_size : float = SHIELD_INITIAL_SIZE # from 0 to 1
 var shield_position : float = 0 # from 0 to 1
 var shield_count : int = INITIAL_SHIELD_COUNT
+@export var shield_thickness = SHIELD_THICKNESS
 
 func _draw():
 	for i in range(shield_count):
@@ -22,8 +23,8 @@ func _draw():
 			start_angle,
 			start_angle + get_shield_circ(),
 			100,
-			Color.WHITE,
-			SHIELD_THICKNESS
+			Color.WHITE if i == 0 else Color(1,1,1,0.5),
+			shield_thickness
 		)
 
 func _process(delta: float) -> void:
@@ -34,7 +35,7 @@ func _process(delta: float) -> void:
 		direction += 1
 	if direction != 0:
 		move(direction, delta)
-		queue_redraw()
+	queue_redraw()
 
 func move(direction : int, delta : float): # direction is 1 or -1
 	shield_position += direction * shield_speed * delta

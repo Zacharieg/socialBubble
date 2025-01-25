@@ -27,13 +27,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_since_action += delta
-	var jaugeMat = jauge.material
-	if jaugeMat is ShaderMaterial:
-		jaugeMat.set_shader_parameter('fV', 1. - max(0., capacity.capacity_current_cooldown) / capacity.capacity_base_cooldown)
 	if Input.is_action_pressed("action"):
+		$AnimationPlayer.play("bounce")
 		time_since_action = 0.
-		if not capacity.capacity_active and capacity.capacity_current_cooldown <= 0.:
-			capacity.fire(self)
 
 func hit_ennemy(ennemy : Ennemy):
 	ennemy.dead = true
@@ -50,9 +46,7 @@ func hit_ennemy(ennemy : Ennemy):
 
 func stop_perfect():
 	print("stop perfect")
-	if capacity.capacity_current_cooldown > 0.:
-		capacity.capacity_current_cooldown -= capacity.TIME_GAINED_WHEN_PERFECT
-		print(capacity.capacity_current_cooldown)
+	capacity.reduce_capacity_cooldown()
 
 func hurt(ennemy : Ennemy):
 	life -= 1
@@ -69,3 +63,9 @@ func game_over():
 func _on_area_entered(area: Area2D) -> void:
 	if area is Ennemy:
 		hit_ennemy(area)
+
+func _on_capacity_fired(cap : Capacity) -> void:
+	cap.apply_effect(self)
+
+func _on_capacity_ended(cap : Capacity) -> void:
+	cap.end_effect(self)
