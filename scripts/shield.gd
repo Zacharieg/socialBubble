@@ -11,7 +11,6 @@ var shield_size : float = SHIELD_INITIAL_SIZE # from 0 to 1
 var shield_position : float = 0 # from 0 to 1
 
 func _draw():
-	print(get_start_angle())
 	draw_arc(
 		Vector2.ZERO,
 		SHIELD_RADIUS,
