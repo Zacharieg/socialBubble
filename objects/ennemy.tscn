@@ -254,7 +254,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"impact_perfect",
-"speed": 24.0
+"speed": 12.0
 }]
 
 [node name="ennemy" type="Area2D"]
@@ -266,8 +266,6 @@ shape = SubResource("RectangleShape2D_diakg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6v7h")
-animation = &"impact_normal"
+animation = &"impact_perfect"
 autoplay = "default"
-frame = 9
-frame_progress = 1.0
 flip_h = true
