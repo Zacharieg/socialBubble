@@ -15,7 +15,7 @@ func _draw():
 		Vector2.ZERO,
 		SHIELD_RADIUS,
 		get_start_angle(),
-		get_end_angle(),
+		get_start_angle() + get_shield_circ(),
 		100,
 		Color.WHITE,
 		10
@@ -41,5 +41,11 @@ func move(direction : int, delta : float): # direction is 1 or -1
 func get_start_angle():
 	return 2 * PI * shield_position
 
+func get_shield_circ():
+	return shield_size * 2 * PI
+
 func get_end_angle():
-	return 2 * PI * shield_position + shield_size * 2 * PI
+	var end_angle = 2 * PI * shield_position + get_shield_circ()
+	if end_angle > 2*PI:
+		end_angle -= 2*PI
+	return end_angle
