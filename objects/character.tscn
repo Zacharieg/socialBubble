@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://drijwg1go25tq" path="res://ressources/bulle anim/bulle_0001.png" id="4_3h0gx"]
 [ext_resource type="Texture2D" uid="uid://xi8cxqukop0v" path="res://ressources/bulle anim/bulle_0002.png" id="5_crlvq"]
 [ext_resource type="Shader" path="res://scripts/fillBubble.gdshader" id="5_lpeis"]
-[ext_resource type="PackedScene" uid="uid://dkc1wtouk1oe5" path="res://scripts/Enlargment.tscn" id="5_u8sxo"]
+[ext_resource type="PackedScene" path="res://scripts/Enlargment.tscn" id="5_u8sxo"]
 [ext_resource type="Texture2D" uid="uid://1vc82y0bmals" path="res://ressources/bulle anim/bulle_0003.png" id="6_3354a"]
 [ext_resource type="Texture2D" uid="uid://c3vcphlev2jv3" path="res://ressources/bulle anim/bulle_0004.png" id="7_c6gbm"]
 [ext_resource type="Texture2D" uid="uid://b6b78wx13femt" path="res://ressources/bulle anim/bulle_0005.png" id="8_u7ac7"]
