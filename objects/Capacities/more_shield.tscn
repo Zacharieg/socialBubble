@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddwulfxvtbm0h"]
+
+[ext_resource type="Script" path="res://scripts/Capacities/more_shield.gd" id="1_4tmfx"]
+
+[node name="MoreShield" type="Node"]
+script = ExtResource("1_4tmfx")
+capacity_name = "More shields"
+capacity_base_cooldown = 180.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,28 +2,62 @@ extends Node
 class_name Capacity
 
 signal capacity_fired
+signal capacity_ended
 
-const TIME_GAINED_WHEN_PERFECT := 2.
+const TIME_COOLDOWN_GAINED_WHEN_PERFECT := 5.
+const TIME_EFFECT_GAINED_WHEN_PERFECT := 2.
 
 @export var capacity_name : String = "NEW CAPACITY"
 @export var capacity_base_cooldown : float = 1.
 @export var capacity_time_effect : float = 1.
+@export var jaugeSprite : Sprite2D
+@onready var jaugeMat : ShaderMaterial = jaugeSprite.material
 
-var capacity_current_cooldown : float
-var capacity_current_time_effect : float
+var capacity_jauge : float = 0
+var capacity_cooldown : float = 0
+var capacity_time : float = 0
 var capacity_active := false
 
-func _ready() -> void:
-	reset()
+var is_running = false
 
-func reset():
-	capacity_current_cooldown = capacity_base_cooldown
-	capacity_current_time_effect = capacity_time_effect
+func _ready() -> void:
+	is_running = false
+	capacity_cooldown = 0.
 
 func _process(delta: float) -> void:
-	if capacity_current_cooldown > 0.:
-		capacity_current_cooldown -= delta
+	if not is_running : 
+		capacity_cooldown += delta
+		capacity_jauge = capacity_cooldown/capacity_base_cooldown
+		if capacity_cooldown > capacity_base_cooldown:
+			fire()
+	else:
+		capacity_time -= delta
+		capacity_jauge = capacity_time / capacity_time_effect
+		if capacity_time < 0:
+			end()
+	
+	
+	jaugeMat.set_shader_parameter('fV', capacity_jauge)
 
-func fire(_charac: Character):
-	reset()
-	capacity_fired.emit()
+func reduce_capacity_cooldown():
+	capacity_cooldown += TIME_COOLDOWN_GAINED_WHEN_PERFECT
+	capacity_time += TIME_EFFECT_GAINED_WHEN_PERFECT
+	capacity_time = min(capacity_time, capacity_time_effect)
+
+func fire():
+	is_running = true
+	capacity_time = capacity_time_effect
+	capacity_fired.emit(self)
+	jaugeMat.set_shader_parameter('albedo', Color.YELLOW)
+
+func end():
+	is_running = false
+	capacity_cooldown = 0.
+	capacity_ended.emit(self)
+	jaugeMat.set_shader_parameter('albedo', Color.WHITE)
+
+func apply_effect(charac : Character):
+	pass
+
+func end_effect(charac : Character):
+	pass

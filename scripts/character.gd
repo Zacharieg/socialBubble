@@ -12,7 +12,7 @@ const HIT_WINDOW = 0.2
 
 @onready var hurtBox : CollisionShape2D = $hurtBox
 
-@onready var capacity : Capacity = $Enlargment
+@onready var capacity : Capacity = $MoreShield
 
 @onready var jauge = $bubble/jauge
 
@@ -27,13 +27,9 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_since_action += delta
-	var jaugeMat = jauge.material
-	if jaugeMat is ShaderMaterial:
-		jaugeMat.set_shader_parameter('fV', 1. - max(0., capacity.capacity_current_cooldown) / capacity.capacity_base_cooldown)
 	if Input.is_action_pressed("action"):
+		$AnimationPlayer.play("bounce")
 		time_since_action = 0.
-		if not capacity.capacity_active and capacity.capacity_current_cooldown <= 0.:
-			capacity.fire(self)
 
 func hit_ennemy(ennemy : Ennemy):
 	ennemy.dead = true
@@ -49,9 +45,9 @@ func hit_ennemy(ennemy : Ennemy):
 	ennemy.die(perfect_stop)
 
 func stop_perfect():
-	if capacity.capacity_current_cooldown > 0.:
-		capacity.capacity_current_cooldown -= capacity.TIME_GAINED_WHEN_PERFECT
-		print(capacity.capacity_current_cooldown)
+
+	print("stop perfect")
+	capacity.reduce_capacity_cooldown()
 
 func hurt(ennemy : Ennemy):
 	life -= 1
@@ -86,3 +82,10 @@ func _on_animation_player_2_animation_finished(_anim_name: StringName) -> void:
 	get_tree().get_root().get_node("game/ui/foreground").game_over_anim_finished = true
 	#game_over()
 	pass # Replace with function body.
+
+func _on_capacity_fired(cap : Capacity) -> void:
+	cap.apply_effect(self)
+
+func _on_capacity_ended(cap : Capacity) -> void:
+	cap.end_effect(self)
+

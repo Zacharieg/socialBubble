@@ -20,6 +20,8 @@ uniform float fV;
 uniform float transparency = 0.5;
 uniform float thickness = 0.1;
 
+uniform vec4 albedo: source_color;
+
 void fragment() {
     vec2 uv = ((UV / -0.50)) + vec2(1,1);
 
@@ -43,9 +45,9 @@ void fragment() {
 
     COLOR =
 		vec4(
-			(fF+(clamp(bF-fF,0.,1.)*.8)),
-			(fF+(clamp(bF-fF,0.,1.)*.8)),
-			(fF+(clamp(bF-fF,0.,1.)*.8)),
+			(fF+(clamp(bF-fF,0.,1.)*.8)) * albedo.r,
+			(fF+(clamp(bF-fF,0.,1.)*.8)) * albedo.g,
+			(fF+(clamp(bF-fF,0.,1.)*.8)) * albedo.b,
 			(fF+(clamp(bF-fF,0.,1.)*.8)) * transparency
 		);
 }
