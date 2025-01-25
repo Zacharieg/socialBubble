@@ -1,11 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://dn506tw3f4unj"]
+[gd_scene load_steps=13 format=3 uid="uid://dn506tw3f4unj"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ap1hq"]
 [ext_resource type="PackedScene" uid="uid://ix2oq52a3tjn" path="res://objects/character.tscn" id="1_hh7su"]
 [ext_resource type="Texture2D" uid="uid://cyf0a1rydt22j" path="res://ressources/Chambre.png" id="3_7ka2y"]
 [ext_resource type="Script" path="res://scripts/ennemySpawner.gd" id="3_p7uip"]
-
+[ext_resource type="Shader" path="res://scripts/sad.gdshader" id="5_bfbvu"]
 [ext_resource type="Texture2D" uid="uid://w4btp0kdyslx" path="res://ressources/black_screen.png" id="5_ycsj1"]
+[ext_resource type="Texture2D" uid="uid://jufifqtyo537" path="res://ressources/01_Justin.png" id="6_cli5u"]
+[ext_resource type="Texture2D" uid="uid://bs6com8xioine" path="res://ressources/vortex.png" id="6_ye1j6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0f0t"]
+shader = ExtResource("5_bfbvu")
+shader_parameter/saturation = 0.25
+shader_parameter/brightness_change = -0.2
+shader_parameter/vortex_texture = ExtResource("6_ye1j6")
 
 [sub_resource type="Animation" id="Animation_nswt7"]
 length = 0.001
@@ -43,16 +51,6 @@ _data = {
 "RESET": SubResource("Animation_nswt7"),
 "new_day": SubResource("Animation_uu2vu")
 }
-
-[ext_resource type="Shader" path="res://scripts/sad.gdshader" id="5_bfbvu"]
-[ext_resource type="Texture2D" uid="uid://jufifqtyo537" path="res://ressources/01_Justin.png" id="6_cli5u"]
-[ext_resource type="Texture2D" uid="uid://bs6com8xioine" path="res://ressources/vortex.png" id="6_ye1j6"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0f0t"]
-shader = ExtResource("5_bfbvu")
-shader_parameter/saturation = 0.25
-shader_parameter/brightness_change = -0.2
-shader_parameter/vortex_texture = ExtResource("6_ye1j6")
 
 [node name="game" type="Node2D"]
 
