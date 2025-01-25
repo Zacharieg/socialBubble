@@ -15,12 +15,12 @@ func _ready() -> void:
 
 func hit_ennemy(ennemy : Ennemy):
 	ennemy.die()
-	if not shield.is_ennemy_on_shields(ennemy):
-		hurt()
-
-func hurt():
-	#get_tree().quit()
-	print("do nothing")
+	#if not shield.is_ennemy_on_shields(ennemy):
+		#hurt()
+#
+#func hurt():
+	##get_tree().quit()
+	#print("do nothing")
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Ennemy:
