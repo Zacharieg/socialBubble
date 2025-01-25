@@ -71,5 +71,6 @@ func is_ennemy_on_shield(ennemy : Ennemy, shield_number : int = 0) -> bool:
 		return ennemy_angle < end_angle or ennemy_angle > start_angle
 
 func add_size(addition: float):
-	shield_size += addition
+	shield_position -= addition * .5
+	shield_size += addition * .5
 	queue_redraw()

@@ -14,6 +14,8 @@ const HIT_WINDOW = 0.2
 
 @onready var capacity : Capacity = $Enlargment
 
+@onready var jauge = $bubble/jauge
+
 var time_since_action : float = 100.
 
 
@@ -25,9 +27,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_since_action += delta
+	var jaugeMat = jauge.material
+	if jaugeMat is ShaderMaterial:
+		jaugeMat.set_shader_parameter('fV', 1. - max(0., capacity.capacity_current_cooldown) / capacity.capacity_base_cooldown)
 	if Input.is_action_pressed("action"):
 		time_since_action = 0.
-		if capacity.capacity_available and capacity.capacity_current_cooldown <= 0.:
+		if not capacity.capacity_active and capacity.capacity_current_cooldown <= 0.:
 			capacity.fire(self)
 
 func hit_ennemy(ennemy : Ennemy):
@@ -37,13 +42,17 @@ func hit_ennemy(ennemy : Ennemy):
 	
 	if shield.is_ennemy_on_shields(ennemy):
 		perfect_stop = time_since_action < HIT_WINDOW
-		stop_perfect()
+		if perfect_stop:
+			stop_perfect()
 	else :
 		hurt()
 	ennemy.die(perfect_stop)
 
 func stop_perfect():
-	pass
+	print("stop perfect")
+	if capacity.capacity_current_cooldown > 0.:
+		capacity.capacity_current_cooldown -= capacity.TIME_GAINED_WHEN_PERFECT
+		print(capacity.capacity_current_cooldown)
 
 func hurt():
 	life -= 1
