@@ -16,7 +16,6 @@ script = ExtResource("1_v03po")
 texture = ExtResource("3_a2lqq")
 
 [node name="bubble_sprite" type="Sprite2D" parent="."]
-scale = Vector2(1.45313, 1.45313)
 texture = ExtResource("4_jhkgx")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,9 +1,9 @@
 extends Node2D
 class_name Shield
 
-const SHIELD_RADIUS : float = 100
+const SHIELD_RADIUS : float = 68
 const SHIELD_INITIAL_SIZE : float = 0.2
-const SHIELD_THICKNESS : float = 10
+const SHIELD_THICKNESS : float = 3
 const SHIELD_INITIAL_SPEED : float = 1
 const INITIAL_SHIELD_COUNT : int = 1
 
@@ -22,7 +22,7 @@ func _draw():
 			start_angle + get_shield_circ(),
 			100,
 			Color.WHITE,
-			10
+			SHIELD_THICKNESS
 		)
 
 func _process(delta: float) -> void:

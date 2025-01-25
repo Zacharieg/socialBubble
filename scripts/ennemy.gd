@@ -3,15 +3,21 @@ class_name Ennemy
 
 const SPEED = 100
 
+var dead = false
+
 func _process(delta: float) -> void:
 	move_to(delta)
 
 func move_to(delta):
-	var direction = Vector2.LEFT.rotated(rotation).normalized()
-	position += direction * SPEED * delta
+	if not dead :
+		var direction = Vector2.LEFT.rotated(rotation).normalized()
+		position += direction * SPEED * delta
 
 func spawn():
 	pass
 
-func die():
+func die(perfect_block = false):
+	dead = true
+	$AnimatedSprite2D.play("impact_perfect" if perfect_block else "impact_normal")
+	await $AnimatedSprite2D.animation_finished
 	queue_free()
