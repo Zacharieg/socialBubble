@@ -1,7 +1,7 @@
 extends Node2D
 class_name EnnemySpawner
 
-const SPAWN_DIST = 250
+@onready var spawn_dist = get_viewport_rect().size.x/2
 
 #func _process(delta):
 	#var timer = SceneTree.create_timer()
@@ -11,6 +11,8 @@ const SPAWN_DIST = 250
 var timer: Timer
 
 func _ready():
+	position = get_viewport_rect().size / 2.
+	
 	# Créer un timer
 	timer = Timer.new()
 	add_child(timer)
@@ -29,19 +31,13 @@ func spawnEnnemy():
 	
 	var initial_pos = Vector2(0,0)
 	var initial_angle = deg_to_rad(randi_range(0,359))
-	var x_from_character = cos(initial_angle) * SPAWN_DIST
-	var y_from_character = sin(initial_angle) * SPAWN_DIST
+	var x_from_character = cos(initial_angle) * spawn_dist
+	var y_from_character = sin(initial_angle) * spawn_dist
 	var center = get_viewport_rect().size / 2
 	
 	initial_pos = Vector2(x_from_character, y_from_character) + center
-	print("x : ", x_from_character)
-	print("y : ", y_from_character)
 	
 	var ennemy = load("res://objects/ennemy.tscn").instantiate()
 	ennemy.position = initial_pos
 	ennemy.rotation = initial_angle
 	get_tree().get_root().get_node("game").add_child(ennemy)
-	
-	print("1 ennemy spawned")
-	
-	pass
