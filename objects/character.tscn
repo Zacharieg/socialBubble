@@ -1,9 +1,83 @@
-[gd_scene load_steps=5 format=3 uid="uid://ix2oq52a3tjn"]
+[gd_scene load_steps=17 format=3 uid="uid://ix2oq52a3tjn"]
 
 [ext_resource type="Script" path="res://scripts/character.gd" id="1_v03po"]
 [ext_resource type="PackedScene" uid="uid://ceghceufd6ax1" path="res://objects/shield.tscn" id="1_x8j2g"]
 [ext_resource type="Texture2D" uid="uid://8ke3u7lax42s" path="res://ressources/LAPIN sans Chambre.png" id="3_a2lqq"]
-[ext_resource type="Texture2D" uid="uid://qi2lrvr6hefi" path="res://ressources/bubble.png" id="4_jhkgx"]
+[ext_resource type="Texture2D" uid="uid://o8r6f4qft0kl" path="res://ressources/bubbleWHITE_impact.png" id="4_4mrax"]
+[ext_resource type="Shader" path="res://scripts/fillBubble.gdshader" id="5_lpeis"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cukv"]
+atlas = ExtResource("4_4mrax")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfuhd"]
+atlas = ExtResource("4_4mrax")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdnn4"]
+atlas = ExtResource("4_4mrax")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a38hm"]
+atlas = ExtResource("4_4mrax")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ik0wx"]
+atlas = ExtResource("4_4mrax")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yh61h"]
+atlas = ExtResource("4_4mrax")
+region = Rect2(1024, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvxc6"]
+atlas = ExtResource("4_4mrax")
+region = Rect2(1280, 0, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qx4be"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cukv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfuhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdnn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a38hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ik0wx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yh61h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvxc6")
+}],
+"loop": false,
+"name": &"impact",
+"speed": 24.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4sa0"]
+shader = ExtResource("5_lpeis")
+shader_parameter/fV = 0.65
+shader_parameter/transparency = 0.5
+
+[sub_resource type="Gradient" id="Gradient_jcqog"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xskia"]
+gradient = SubResource("Gradient_jcqog")
+fill_to = Vector2(1, 1)
 
 [node name="character" type="Area2D"]
 script = ExtResource("1_v03po")
@@ -15,7 +89,18 @@ script = ExtResource("1_v03po")
 [node name="character_Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_a2lqq")
 
-[node name="bubble_sprite" type="Sprite2D" parent="."]
-texture = ExtResource("4_jhkgx")
+[node name="bubble" type="Node2D" parent="."]
+
+[node name="bubble_sprite" type="AnimatedSprite2D" parent="bubble"]
+visible = false
+modulate = Color(1, 1, 1, 0.392157)
+clip_children = 2
+sprite_frames = SubResource("SpriteFrames_qx4be")
+autoplay = "default"
+
+[node name="jauge" type="Sprite2D" parent="bubble"]
+material = SubResource("ShaderMaterial_l4sa0")
+scale = Vector2(2, 2)
+texture = SubResource("GradientTexture2D_xskia")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
