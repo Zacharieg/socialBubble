@@ -37,7 +37,7 @@ func spawnEnnemy():
 	
 	initial_pos = Vector2(x_from_character, y_from_character) + center
 	
-	var ennemy = load("res://objects/ennemy.tscn").instantiate()
+	var ennemy = preload("res://objects/ennemy.tscn").instantiate()
 	ennemy.position = initial_pos
 	ennemy.rotation = initial_angle
 	get_tree().get_root().get_node("game").add_child(ennemy)

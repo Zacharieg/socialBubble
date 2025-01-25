@@ -1,7 +1,7 @@
 extends Area2D
 class_name Ennemy
 
-const SPEED = 200
+const SPEED = 100
 
 func _process(delta: float) -> void:
 	move_to(delta)
