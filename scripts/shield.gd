@@ -1,9 +1,10 @@
 extends Node2D
 class_name Shield
 
-const SHIELD_RADIUS : float = 68
-const SHIELD_INITIAL_SIZE : float = 0.13
-const SHIELD_THICKNESS : float = 3
+
+const SHIELD_RADIUS : float = 62
+const SHIELD_INITIAL_SIZE : float = 0.2
+const SHIELD_THICKNESS : float = 10
 const SHIELD_INITIAL_SPEED : float = 0.5
 const INITIAL_SHIELD_COUNT : int = 1
 
@@ -69,3 +70,8 @@ func is_ennemy_on_shield(ennemy : Ennemy, shield_number : int = 0) -> bool:
 		return ennemy_angle > start_angle and ennemy_angle < end_angle
 	else :
 		return ennemy_angle < end_angle or ennemy_angle > start_angle
+
+func add_size(addition: float):
+	shield_position -= addition * .5
+	shield_size += addition * .5
+	queue_redraw()

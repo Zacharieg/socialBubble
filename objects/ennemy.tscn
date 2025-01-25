@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://d3ru573q8wcfm" path="res://ressources/ImpactPerfect.png" id="4_ajl3y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_diakg"]
-size = Vector2(49, 18)
+size = Vector2(55, 18)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8lho6"]
 atlas = ExtResource("3_3gu3g")
@@ -254,7 +254,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"impact_perfect",
-"speed": 24.0
+"speed": 12.0
 }]
 
 [node name="ennemy" type="Area2D"]
@@ -262,13 +262,11 @@ script = ExtResource("1_0ft8c")
 speed = 180
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-11.5, -1)
+position = Vector2(-14.5, -1)
 shape = SubResource("RectangleShape2D_diakg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_o6v7h")
-animation = &"impact_normal"
+animation = &"impact_perfect"
 autoplay = "default"
-frame = 9
-frame_progress = 1.0
 flip_h = true

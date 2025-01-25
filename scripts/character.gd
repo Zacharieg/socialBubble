@@ -12,7 +12,12 @@ const HIT_WINDOW = 0.2
 
 @onready var hurtBox : CollisionShape2D = $hurtBox
 
+@onready var capacity : Capacity = $Enlargment
+
+@onready var jauge = $bubble/jauge
+
 var time_since_action : float = 100.
+
 
 func _ready() -> void:
 	#position = get_viewport_rect().size / 2.
@@ -22,8 +27,13 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	time_since_action += delta
+	var jaugeMat = jauge.material
+	if jaugeMat is ShaderMaterial:
+		jaugeMat.set_shader_parameter('fV', 1. - max(0., capacity.capacity_current_cooldown) / capacity.capacity_base_cooldown)
 	if Input.is_action_pressed("action"):
 		time_since_action = 0.
+		if not capacity.capacity_active and capacity.capacity_current_cooldown <= 0.:
+			capacity.fire(self)
 
 func hit_ennemy(ennemy : Ennemy):
 	ennemy.dead = true
@@ -32,20 +42,27 @@ func hit_ennemy(ennemy : Ennemy):
 	
 	if shield.is_ennemy_on_shields(ennemy):
 		perfect_stop = time_since_action < HIT_WINDOW
-		stop_perfect()
+		if perfect_stop:
+			stop_perfect()
 	else :
-		hurt()
+		hurt(ennemy)
 	ennemy.die(perfect_stop)
 
 func stop_perfect():
-	pass
+	print("stop perfect")
+	if capacity.capacity_current_cooldown > 0.:
+		capacity.capacity_current_cooldown -= capacity.TIME_GAINED_WHEN_PERFECT
+		print(capacity.capacity_current_cooldown)
 
-func hurt():
+func hurt(ennemy : Ennemy):
 	life -= 1
 	get_tree().get_root().get_node("game/ui/VBoxContainer/life_label").text = str("PV : ", life)
 	if life == 0:game_over()
-	#print("do nothing")
-	
+	$bubble/bubble_sprite.rotation = ennemy.rotation
+	$bubble/bubble_sprite.play("impact")
+	await $bubble/bubble_sprite.animation_finished
+	$bubble/bubble_sprite.play("default")
+
 func game_over():
 	get_tree().quit()
 
