@@ -28,7 +28,10 @@ func _process(delta: float) -> void:
 				sin(rotation)*distance_from_player,
 			) + character.position
 
-func die(perfect_block = false):
-	$AnimatedSprite2D.play("impact_perfect" if perfect_block else "impact_normal")
-	await $AnimatedSprite2D.animation_finished
+
+func die(impact_type := "impact_perfect"):
+	dead = true
+	$Impact.play(impact_type)
+	$Moving.hide()
+	await $Impact.animation_finished
 	queue_free()

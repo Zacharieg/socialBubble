@@ -61,8 +61,3 @@ func spawn_day_ennemies():
 	
 	for hit_time in hits_time:
 		ennemy_spawner.spawn_ennemy(hit_time)
-
-func finish_day():
-	current_day += 1
-	new_day()
-	pass
