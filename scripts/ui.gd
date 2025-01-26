@@ -43,4 +43,5 @@ func game_over():
 	await get_tree().create_timer(1).timeout
 	await self.any_action_pressed
 	
+	get_tree().paused = false
 	get_tree().reload_current_scene()
