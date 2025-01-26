@@ -111,7 +111,8 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Art : Juliette Goujon,  Lazare Viennot et Stéphane Mercier
-Dev : Zacharie Guet, Victor Robert--Jaunet et Jordan Lis"
+Dev : Zacharie Guet, Victor Robert--Jaunet et Jordan Lis
+Musique : Hugo Gautier"
 label_settings = SubResource("LabelSettings_pnfi6")
 
 [node name="TextureRect" type="TextureRect" parent="container"]
