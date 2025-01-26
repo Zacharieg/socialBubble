@@ -780,5 +780,6 @@ script = ExtResource("13_56kp4")
 [connection signal="next_day" from="level" to="ennemy_spawner" method="increment_level"]
 [connection signal="next_day" from="level" to="ui" method="day_pass"]
 [connection signal="dead" from="character" to="ui" method="game_over"]
+[connection signal="healed" from="character" to="ui/lifebar" method="_on_character_healed"]
 [connection signal="hurted" from="character" to="ui/lifebar" method="_on_character_hurted"]
 [connection signal="upgrade" from="ui/out_game_panel/container/upgrades" to="character" method="_on_upgrade"]

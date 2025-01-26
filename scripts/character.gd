@@ -3,6 +3,7 @@ class_name Character
 
 signal hurted
 signal dead
+signal healed
 
 # Vie = nombre de fois que le joueur peut être touché avant de mourir
 @export var max_life = 3
