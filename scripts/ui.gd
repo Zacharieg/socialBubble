@@ -7,6 +7,7 @@ func _input(event: InputEvent) -> void:
 	emit_signal("any_action_pressed")
 
 func day_pass(day_nb):
+	print("day pass")
 	get_tree().paused = true
 	
 	if day_nb != 1 : 
