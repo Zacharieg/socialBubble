@@ -1,7 +1,7 @@
 extends Node2D
 class_name EnnemySpawner
 
-const DEFAULT_MAX_ANGLE = PI/8
+const DEFAULT_MAX_ANGLE = PI/4
 const DEFAULT_ENNEMY_SPEED = 20
 
 @export var character : Character

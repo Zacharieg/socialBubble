@@ -29,13 +29,11 @@ func new_day():
 	current_day += 1
 	emit_signal("next_day", current_day)
 	
-	if current_day%5 == 0 && game_bpm < 100:
+	if current_day%5 == 0 && game_bpm < 50:
 		game_bpm *= 2
-		ennemy_spawner.difficulty_angle_max = ennemy_spawner.DEFAULT_MAX_ANGLE
-		ennemy_spawner.ennemy_speed = ennemy_spawner.DEFAULT_ENNEMY_SPEED
-	else : 
-		ennemy_spawner.difficulty_angle_max += PI/8
-		ennemy_spawner.ennemy_speed += 10
+
+	ennemy_spawner.difficulty_angle_max += PI/8
+	ennemy_spawner.ennemy_speed += 10
 
 	time_day_started = Time.get_ticks_msec()
 	
