@@ -35,14 +35,17 @@ func _process(delta: float) -> void:
 func hit_ennemy(ennemy : Ennemy):
 	ennemy.dead = true
 	await get_tree().create_timer(HIT_WINDOW/2).timeout
-	var perfect_stop = false
+
+	var impact_type = "impact_normal"
+	
 	if shield.is_ennemy_on_shields(ennemy):
-		perfect_stop = time_since_action < HIT_WINDOW
-		if perfect_stop:
+		if time_since_action < HIT_WINDOW:
+			impact_type = "impact_perfect"
 			stop_perfect()
 	else :
+		impact_type = "impact_damage"
 		hurt(ennemy)
-	ennemy.die(perfect_stop)
+	ennemy.die(impact_type)
 
 func stop_perfect():
 	capacity.reduce_capacity_cooldown()
@@ -66,6 +69,7 @@ func _on_upgrade(mod : Upgrades.Modifier):
 
 func _on_capacity_fired(cap : Capacity) -> void:
 	cap.apply_effect(self)
+	$capa_effect.play("capa_effect")
 
 func _on_capacity_ended(cap : Capacity) -> void:
 	cap.end_effect(self)

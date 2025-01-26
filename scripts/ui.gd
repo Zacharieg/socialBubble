@@ -3,8 +3,9 @@ extends CanvasLayer
 signal any_action_pressed
 const DAY_PASS_TIME = 1.
 
-func _input(event: InputEvent) -> void:
-	emit_signal("any_action_pressed")
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_pressed():
+		emit_signal("any_action_pressed")
 
 func day_pass(day_nb):
 	print("day pass")
@@ -39,6 +40,7 @@ func game_over():
 	$ui_animation.play("ui_fade_in")
 	get_tree().paused = true
 	
+	await get_tree().create_timer(1).timeout
 	await self.any_action_pressed
 	
 	get_tree().reload_current_scene()

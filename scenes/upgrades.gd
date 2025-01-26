@@ -16,6 +16,7 @@ signal upgrade(modifier)
 	ShieldAddedModifier.new(1),
 ]
 
+var is_chosing := false
 var market_upgrades : Array[Modifier] = []
 
 @onready var buttons : Array[Button] = [$upgrade_1, $upgrade_2]
@@ -24,7 +25,13 @@ func _ready() -> void:
 	for i in range(len(buttons)):
 		buttons[i].connect("button_down", func(): choose_upgrade(i))
 
+func _process(delta: float) -> void:
+	if is_chosing:
+		if not buttons[0].has_focus() and not buttons[1].has_focus():
+			buttons[0].grab_focus()
+
 func setup_upgrades():
+	is_chosing = true
 	market_upgrades = []
 	for button in buttons:
 		var modifier : Modifier = available_modifiers[randi()%len(available_modifiers)]
@@ -33,9 +40,9 @@ func setup_upgrades():
 		market_upgrades.append(modifier)
 		button.text = modifier.name()
 	buttons[0].grab_focus()
-	print(market_upgrades)
 
 func choose_upgrade(nb_upgrade):
+	is_chosing = false
 	print("choose upgrade")
 	emit_signal("upgrade", market_upgrades[nb_upgrade])
 
