@@ -1,6 +1,9 @@
 extends Area2D
 class_name Character
 
+signal hurted
+signal dead
+
 # Vie = nombre de fois que le joueur peut être touché avant de mourir
 @export var max_life = 3
 @onready var life = max_life
@@ -15,13 +18,10 @@ const ACTION_COOLDOWN = 0.2
 
 @onready var capacity : Capacity = $MoreShield
 
-@onready var jauge = $bubble/jauge
-
 var time_since_action : float = 100.
 
 func _ready() -> void:
 	#position = get_viewport_rect().size / 2.
-	get_tree().get_root().get_node("game/ui/VBoxContainer/life_label").text = str("PV : ", life)
 	hurtBox.shape = CircleShape2D.new()
 	hurtBox.shape.radius = shield.SHIELD_RADIUS - shield.SHIELD_THICKNESS/2
 
@@ -45,43 +45,26 @@ func hit_ennemy(ennemy : Ennemy):
 	ennemy.die(perfect_stop)
 
 func stop_perfect():
-
-	print("stop perfect")
 	capacity.reduce_capacity_cooldown()
 
 func hurt(ennemy : Ennemy):
 	life -= 1
-	get_tree().get_root().get_node("game/ui/VBoxContainer/life_label").text = str("PV : ", life)
-	if life == 0:game_over_animation()
+	if life == 0 : 
+		emit_signal("dead")
+	
 	$bubble/bubble_sprite.rotation = ennemy.rotation
 	$bubble/bubble_sprite.play("impact")
 	await $bubble/bubble_sprite.animation_finished
 	$bubble/bubble_sprite.play("default")
 
-func game_over_animation():
-	
-	# Mettre en pause le spawner et le timer de la journée
-	get_tree().get_root().get_node("game/ennemy_spawner").pause_spawner()
-	get_tree().get_root().get_node("game/level").day_timer.stop()
-
-	get_tree().get_root().get_node("game/ui/foreground/AnimationPlayer").play("RESET")
-	get_tree().get_root().get_node("game/ui/foreground/AnimationPlayer").stop()
-	get_tree().get_root().get_node("game/ui/foreground/day_label").text = "Vous avez perdu"
-	get_tree().get_root().get_node("game/ui/foreground/AnimationPlayer2").play("game_over")
-
-#func game_over():
-	#get_tree().quit()
-	
+func _on_upgrade(mod : Upgrades.Modifier):
+	print("apply")
+	print(mod)
+	mod.modify(self)
 
 func _on_area_entered(area: Area2D) -> void:
 	if area is Ennemy:
 		hit_ennemy(area)
-
-# Lance la fonction game_over une fois que l'animation game over est terminée
-func _on_animation_player_2_animation_finished(_anim_name: StringName) -> void:
-	get_tree().get_root().get_node("game/ui/foreground").game_over_anim_finished = true
-	#game_over()
-	pass # Replace with function body.
 
 func _on_capacity_fired(cap : Capacity) -> void:
 	cap.apply_effect(self)

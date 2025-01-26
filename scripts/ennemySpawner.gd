@@ -41,8 +41,6 @@ func get_enemy_new_angle() -> float:
 		last_angle - difficulty_angle_max/2.,
 		last_angle - difficulty_angle_max/2.,
 	)
-	print("last_angle" + str(last_angle))
-	print("new_angle" + str(new_angle))
 	last_angle = new_angle
 	return new_angle 
 
@@ -59,11 +57,9 @@ func spawnEnnemy():
 	ennemy.position = initial_pos
 	ennemy.rotation = angle
 	get_tree().get_root().get_node("game").add_child(ennemy)
+
+func increment_level(day_nb):
+	inbetween_spawning_time -= 0.2
+	set_spawning_timer()
 	
-func pause_spawner():
-	timer.stop()
-
-
-func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	get_tree().get_root().get_node("game/level").start_new_day_after_anim()
-	pass # Replace with function body.
+	difficulty_angle_max += PI/4
