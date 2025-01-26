@@ -1,7 +1,8 @@
-[gd_scene load_steps=163 format=3 uid="uid://b4ttxq676ql52"]
+[gd_scene load_steps=164 format=3 uid="uid://b4ttxq676ql52"]
 
 [ext_resource type="Texture2D" uid="uid://bsb363srsuppm" path="res://ressources/anim_intro/GGJ25 Game on 1.png" id="1_0c3mw"]
 [ext_resource type="Texture2D" uid="uid://bkdlonwtt6p2i" path="res://ressources/BG2.png" id="1_luxd6"]
+[ext_resource type="Script" path="res://scripts/intro.gd" id="1_nbvcq"]
 [ext_resource type="Texture2D" uid="uid://85422nlba6f7" path="res://ressources/01_Justin_Book_spritesheet.png" id="5_f53eg"]
 [ext_resource type="Texture2D" uid="uid://ch4qymg7wd3jv" path="res://ressources/04_Justin_Cat_spritesheet.png" id="6_j08gp"]
 [ext_resource type="Texture2D" uid="uid://dgxtj05c1no6h" path="res://ressources/02_Justin_Console_spritesheet.png" id="7_kdoba"]
@@ -1122,6 +1123,7 @@ _data = {
 }
 
 [node name="intro" type="Node2D"]
+script = ExtResource("1_nbvcq")
 
 [node name="bg" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_x5a8b")
@@ -1152,3 +1154,5 @@ visible = false
 position = Vector2(256, 256)
 scale = Vector2(0.184074, 0.233484)
 texture = ExtResource("13_as4ho")
+
+[connection signal="animation_finished" from="character_Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
