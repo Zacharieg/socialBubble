@@ -35,7 +35,6 @@ func hit_ennemy(ennemy : Ennemy):
 	ennemy.dead = true
 	await get_tree().create_timer(HIT_WINDOW/2).timeout
 	var perfect_stop = false
-	
 	if shield.is_ennemy_on_shields(ennemy):
 		perfect_stop = time_since_action < HIT_WINDOW
 		if perfect_stop:
@@ -63,10 +62,6 @@ func _on_upgrade(mod : Upgrades.Modifier):
 	print("apply")
 	print(mod)
 	mod.modify(self)
-
-func _on_area_entered(area: Area2D) -> void:
-	if area is Ennemy:
-		hit_ennemy(area)
 
 func _on_capacity_fired(cap : Capacity) -> void:
 	cap.apply_effect(self)

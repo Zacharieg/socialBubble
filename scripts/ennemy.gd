@@ -1,23 +1,34 @@
-extends Area2D
+extends Node2D
 class_name Ennemy
 
-@export var speed = 220
+const PLAYER_IMPACT_DISTANCE = 100
+
+var speed = 50 #per seconds
+
+var hit_time : int
 
 var dead = false
 
+var character : Character = null
+
+func _ready() -> void:
+	visible = false
+
 func _process(delta: float) -> void:
-	move_to(delta)
-
-func move_to(delta):
-	if not dead :
-		var direction = Vector2.LEFT.rotated(rotation).normalized()
-		position += direction * speed * delta
-
-func spawn():
-	pass
+	if not dead:
+		visible = true
+		var time_since_arrive = hit_time - Time.get_ticks_msec()
+		var distance_from_player = float(time_since_arrive)/1000 * speed + PLAYER_IMPACT_DISTANCE
+		if time_since_arrive < 0:
+			character.hit_ennemy(self)
+			dead = true
+		else :
+			position = Vector2(
+				cos(rotation)*distance_from_player,
+				sin(rotation)*distance_from_player,
+			) + character.position
 
 func die(perfect_block = false):
-	dead = true
 	$AnimatedSprite2D.play("impact_perfect" if perfect_block else "impact_normal")
 	await $AnimatedSprite2D.animation_finished
 	queue_free()

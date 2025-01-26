@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://botl0wja8h6hf"]
+
+[ext_resource type="Script" path="res://scripts/music.gd" id="1_o6sw7"]
+[ext_resource type="AudioStream" uid="uid://mwnmi7iyuhnb" path="res://ressources/music/LOFI.wav" id="2_2jli1"]
+
+[node name="Music" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_o6sw7")
+
+[node name="Lofi" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2jli1")
