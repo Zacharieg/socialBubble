@@ -1,0 +1,149 @@
+[gd_scene load_steps=22 format=3 uid="uid://bvdlmj2k1iy5r"]
+
+[ext_resource type="Texture2D" uid="uid://crpe7apx74pqq" path="res://ressources/HPIdle.png" id="1_a7xsu"]
+[ext_resource type="Script" path="res://scripts/life_point_sprite.gd" id="2_owi4g"]
+[ext_resource type="Texture2D" uid="uid://2dig0ldi06cg" path="res://ressources/HPLoss.png" id="2_yrde6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjv41"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(0, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gqjd"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(28, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1223e"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(56, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nauof"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(84, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j1xcq"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(112, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_03isn"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(140, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0v12"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(168, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evm18"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(196, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxj8g"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(224, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tyjmt"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(252, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxuqt"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(280, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwiro"]
+atlas = ExtResource("1_a7xsu")
+region = Rect2(308, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k13fa"]
+atlas = ExtResource("2_yrde6")
+region = Rect2(0, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m8g1"]
+atlas = ExtResource("2_yrde6")
+region = Rect2(28, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iupie"]
+atlas = ExtResource("2_yrde6")
+region = Rect2(56, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt27k"]
+atlas = ExtResource("2_yrde6")
+region = Rect2(84, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ygo2"]
+atlas = ExtResource("2_yrde6")
+region = Rect2(112, 0, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qifij"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rjv41")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gqjd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1223e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nauof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j1xcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_03isn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0v12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evm18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxj8g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tyjmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxuqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwiro")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k13fa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m8g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iupie")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt27k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ygo2")
+}],
+"loop": false,
+"name": &"disappears",
+"speed": 12.0
+}]
+
+[node name="life_point" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="life_point_sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qifij")
+animation = &"disappears"
+autoplay = "default"
+frame = 4
+frame_progress = 1.0
+script = ExtResource("2_owi4g")

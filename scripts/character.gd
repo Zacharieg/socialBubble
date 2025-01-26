@@ -46,11 +46,13 @@ func hit_ennemy(ennemy : Ennemy):
 
 func stop_perfect():
 	capacity.reduce_capacity_cooldown()
-
+	
+	
 func hurt(ennemy : Ennemy):
 	life -= 1
-	if life == 0 : 
-		emit_signal("dead")
+	emit_signal("hurted")
+	#if life == 0 : 
+		#emit_signal("dead")
 	
 	$bubble/bubble_sprite.rotation = ennemy.rotation
 	$bubble/bubble_sprite.play("impact")

@@ -3,7 +3,7 @@ class_name Shield
 
 
 const SHIELD_RADIUS : float = 62
-const SHIELD_INITIAL_SIZE : float = 0.2
+const SHIELD_INITIAL_SIZE : float = 0.1
 const SHIELD_THICKNESS : float = 10
 const SHIELD_INITIAL_SPEED : float = 0.5
 const INITIAL_SHIELD_COUNT : int = 1
