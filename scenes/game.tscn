@@ -1271,7 +1271,6 @@ centered = false
 
 [node name="ui" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
 script = ExtResource("9_7nptc")
 
 [node name="ui_animation" type="AnimationPlayer" parent="ui"]
