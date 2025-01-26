@@ -38,7 +38,7 @@ func decrease_life(damage):
 func _on_disappear_animation_finished(life_point: Node):
 	life_point.queue_free()
 
-func add_life(additionnal_life_point):
+func increase_life(additionnal_life_point):
 	var life_scene = preload("res://objects/life_point.tscn")
 	life_scene = life_scene.instantiate()
 	get_node("lifepoint_separator").add_child(life_scene)
@@ -47,4 +47,9 @@ func add_life(additionnal_life_point):
 
 func _on_character_hurted() -> void:
 	decrease_life(1)
+	pass # Replace with function body.
+
+
+func _on_character_healed() -> void:
+	increase_life(1)
 	pass # Replace with function body.

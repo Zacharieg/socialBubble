@@ -73,6 +73,7 @@ class HealModifier extends Modifier:
 	
 	func modify(charac : Character):
 		charac.life += 1
+		charac.emit_signal("healed")
 
 class CapacityCooldownModifier extends Modifier:
 	var multiplier = 1
