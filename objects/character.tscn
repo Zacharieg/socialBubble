@@ -66,7 +66,7 @@ shader = ExtResource("5_lpeis")
 shader_parameter/fV = 0.65
 shader_parameter/transparency = 0.8
 shader_parameter/thickness = 0.2
-shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo = Color(0.658824, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_jcqog"]
 
@@ -95,10 +95,10 @@ tracks/1/path = NodePath("shield:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": []
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_jatob"]
@@ -139,7 +139,6 @@ _data = {
 script = ExtResource("1_v03po")
 
 [node name="shield" parent="." instance=ExtResource("1_x8j2g")]
-modulate = Color(0, 0, 0, 1)
 
 [node name="hurtBox" type="CollisionShape2D" parent="."]
 
@@ -172,6 +171,13 @@ jaugeSprite = NodePath("../bubble/jauge")
 libraries = {
 "": SubResource("AnimationLibrary_v8lfg")
 }
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="capacity_ended" from="MoreShield" to="." method="_on_capacity_ended"]

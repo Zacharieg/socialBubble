@@ -13,6 +13,7 @@ const TIME_EFFECT_GAINED_WHEN_PERFECT := 2.
 @export var jaugeSprite : Sprite2D
 @onready var jaugeMat : ShaderMaterial = jaugeSprite.material
 
+
 var capacity_jauge : float = 0
 var capacity_cooldown : float = 0
 var capacity_time : float = 0
