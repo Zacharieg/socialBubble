@@ -51,8 +51,8 @@ func stop_perfect():
 func hurt(ennemy : Ennemy):
 	life -= 1
 	emit_signal("hurted")
-	#if life == 0 : 
-		#emit_signal("dead")
+	if life == 0 : 
+		emit_signal("dead")
 	
 	$bubble/bubble_sprite.rotation = ennemy.rotation
 	$bubble/bubble_sprite.play("impact")
