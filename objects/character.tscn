@@ -139,6 +139,7 @@ _data = {
 script = ExtResource("1_v03po")
 
 [node name="shield" parent="." instance=ExtResource("1_x8j2g")]
+modulate = Color(0, 0, 0, 1)
 
 [node name="hurtBox" type="CollisionShape2D" parent="."]
 
