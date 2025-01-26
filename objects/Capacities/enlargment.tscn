@@ -4,11 +4,3 @@
 
 [node name="Enlargment" type="Node"]
 script = ExtResource("1_3rodg")
-capacity_name = "Enlargment"
-capacity_base_cooldown = 10.0
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

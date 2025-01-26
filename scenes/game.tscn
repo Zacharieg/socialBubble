@@ -196,7 +196,7 @@ text = "Amélioration 1"
 
 [node name="upgrade_2" type="Button" parent="ui/out_game_panel/container/upgrades"]
 layout_mode = 2
-text = "Amélioration 2"
+text = "Amélioration 1"
 
 [connection signal="next_day" from="level" to="ennemy_spawner" method="increment_level"]
 [connection signal="next_day" from="level" to="ui" method="day_pass"]

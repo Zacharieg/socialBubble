@@ -12,12 +12,12 @@ func day_pass(day_nb):
 	if day_nb != 1 : 
 		$out_game_panel/container/upgrades.visible = true
 		$out_game_panel/container/upgrades.setup_upgrades()
-		$out_game_panel/container/subtitle.text = "Choisissez une amélioration"
+		$out_game_panel/container/subtitle.text = "Choose an upgrade"
 	else :
 		$out_game_panel/container/upgrades.visible = false
-		$out_game_panel/container/subtitle.text = "Bon Courage  !"
+		$out_game_panel/container/subtitle.text = "Good luck!"
 		
-	$out_game_panel/container/title.text = "Jour " + str(day_nb)
+	$out_game_panel/container/title.text = "Day " + str(day_nb)
 	
 	$ui_animation.play("ui_fade_in")
 	await $ui_animation.animation_finished
@@ -33,8 +33,8 @@ func day_pass(day_nb):
 
 func game_over():
 	$out_game_panel/container/upgrades.visible = false
-	$out_game_panel/container/title.text = "Vous avez perdu"
-	$out_game_panel/container/subtitle.text = "Appuyez sur n'importe quel bouton pour réessayer"
+	$out_game_panel/container/title.text = "Game Over"
+	$out_game_panel/container/subtitle.text = "Press any button to continue"
 	$ui_animation.play("ui_fade_in")
 	get_tree().paused = true
 	

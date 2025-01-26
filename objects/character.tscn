@@ -164,7 +164,7 @@ texture = SubResource("GradientTexture2D_xskia")
 
 [node name="MoreShield" parent="." node_paths=PackedStringArray("jaugeSprite") instance=ExtResource("12_u6dw0")]
 capacity_base_cooldown = 50.0
-capacity_time_effect = 10.0
+capacity_base_duration = 5.0
 jaugeSprite = NodePath("../bubble/jauge")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

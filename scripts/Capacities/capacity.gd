@@ -5,18 +5,17 @@ signal capacity_fired
 signal capacity_ended
 
 const TIME_COOLDOWN_GAINED_WHEN_PERFECT := 5.
-const TIME_EFFECT_GAINED_WHEN_PERFECT := 2.
+const TIME_EFFECT_GAINED_WHEN_PERFECT := .5
 
 @export var capacity_name : String = "NEW CAPACITY"
 @export var capacity_base_cooldown : float = 1.
-@export var capacity_time_effect : float = 1.
+@export var capacity_base_duration : float = 1.
 @export var jaugeSprite : Sprite2D
 @onready var jaugeMat : ShaderMaterial = jaugeSprite.material
 
 var capacity_jauge : float = 0
 var capacity_cooldown : float = 0
 var capacity_time : float = 0
-var capacity_active := false
 
 var is_running = false
 
@@ -34,7 +33,7 @@ func _process(delta: float) -> void:
 			fire()
 	else:
 		capacity_time -= delta
-		capacity_jauge = capacity_time / capacity_time_effect
+		capacity_jauge = capacity_time / capacity_base_duration
 		if capacity_time < 0:
 			end()
 	
@@ -44,11 +43,11 @@ func _process(delta: float) -> void:
 func reduce_capacity_cooldown():
 	capacity_cooldown += TIME_COOLDOWN_GAINED_WHEN_PERFECT
 	capacity_time += TIME_EFFECT_GAINED_WHEN_PERFECT
-	capacity_time = min(capacity_time, capacity_time_effect) 
+	capacity_time = min(capacity_time, capacity_base_duration) 
 
 func fire():
 	is_running = true
-	capacity_time = capacity_time_effect
+	capacity_time = capacity_base_duration
 	capacity_fired.emit(self)
 	jaugeMat.set_shader_parameter('albedo', Color.YELLOW)
 
@@ -58,8 +57,8 @@ func end():
 	capacity_ended.emit(self)
 	jaugeMat.set_shader_parameter('albedo', Color.WHITE)
 
-func apply_effect(charac : Character):
+func apply_effect(_charac : Character):
 	pass
 
-func end_effect(charac : Character):
+func end_effect(_charac : Character):
 	pass
