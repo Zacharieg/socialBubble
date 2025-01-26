@@ -192,10 +192,12 @@ script = ExtResource("10_31mmv")
 
 [node name="upgrade_1" type="Button" parent="ui/out_game_panel/container/upgrades"]
 layout_mode = 2
+focus_neighbor_right = NodePath("../upgrade_2")
 text = "Amélioration 1"
 
 [node name="upgrade_2" type="Button" parent="ui/out_game_panel/container/upgrades"]
 layout_mode = 2
+focus_neighbor_left = NodePath("../upgrade_1")
 text = "Amélioration 1"
 
 [connection signal="next_day" from="level" to="ennemy_spawner" method="increment_level"]

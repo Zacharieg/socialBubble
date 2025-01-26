@@ -32,6 +32,7 @@ func setup_upgrades():
 			modifier = available_modifiers[randi()%len(available_modifiers)]
 		market_upgrades.append(modifier)
 		button.text = modifier.name()
+	buttons[0].grab_focus()
 	print(market_upgrades)
 
 func choose_upgrade(nb_upgrade):
