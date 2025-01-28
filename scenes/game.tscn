@@ -1335,6 +1335,23 @@ layout_mode = 2
 focus_neighbor_left = NodePath("../upgrade_1")
 text = "Amélioration 1"
 
+[node name="pause_menu" type="VBoxContainer" parent="ui/out_game_panel"]
+visible = false
+layout_mode = 0
+offset_left = 135.0
+offset_top = 169.0
+offset_right = 377.0
+offset_bottom = 343.0
+alignment = 1
+
+[node name="main_menu" type="Button" parent="ui/out_game_panel/pause_menu"]
+layout_mode = 2
+text = "Back to main menu"
+
+[node name="resume" type="Button" parent="ui/out_game_panel/pause_menu"]
+layout_mode = 2
+text = "Resume"
+
 [node name="lifebar" type="MarginContainer" parent="ui"]
 offset_right = 40.0
 offset_bottom = 40.0

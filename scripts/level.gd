@@ -35,14 +35,12 @@ func new_day():
 	ennemy_spawner.difficulty_angle_max += PI/8
 	ennemy_spawner.ennemy_speed += 10
 
+
+func spawn_day_ennemies():
+	
 	time_day_started = Time.get_ticks_msec()
 	
 	time_end_day = time_day_started + DAYS_DURATION
-	
-	spawn_day_ennemies()
-	
-
-func spawn_day_ennemies():
 	
 	var song_minute_per_bit = 1/float(song_bpm)
 	var song_ms_ber_bit = int(song_minute_per_bit*60000) 

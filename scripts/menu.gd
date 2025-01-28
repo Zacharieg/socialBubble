@@ -5,5 +5,8 @@ func _ready():
 
 func _unhandled_key_input(event) :
 	if event.is_pressed():
-		get_tree().change_scene_to_file("res://scenes/intro.tscn")
+		if event.is_action_pressed("pause"):
+			get_tree().quit()
+		else:
+			get_tree().change_scene_to_file("res://scenes/intro.tscn")
 	

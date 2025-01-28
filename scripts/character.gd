@@ -17,7 +17,7 @@ const ACTION_COOLDOWN = 0.2
 
 @onready var hurtBox : CollisionShape2D = $hurtBox
 
-@onready var capacity : Capacity = $MoreShield
+@onready var capacity : Capacity = $Enlargment
 
 var time_since_action : float = 100.
 

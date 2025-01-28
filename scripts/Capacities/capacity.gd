@@ -1,8 +1,8 @@
 extends Node
 class_name Capacity
 
-signal capacity_fired
-signal capacity_ended
+signal capacity_fired(Capacity)
+signal capacity_ended(Capacity)
 
 const TIME_COOLDOWN_GAINED_WHEN_PERFECT := 5.
 const TIME_EFFECT_GAINED_WHEN_PERFECT := .5

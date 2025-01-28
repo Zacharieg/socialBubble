@@ -3,9 +3,14 @@ extends CanvasLayer
 signal any_action_pressed
 const DAY_PASS_TIME = 1.
 
+var game_paused := false
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_pressed():
+		if event.is_action_pressed("pause"):
+			get_tree().change_scene_to_file("res://main.tscn")
 		emit_signal("any_action_pressed")
+				
 
 func day_pass(day_nb):
 	print("day pass")
@@ -32,6 +37,7 @@ func day_pass(day_nb):
 	$ui_animation.play("ui_fade_out")
 	await $ui_animation.animation_finished
 	get_tree().paused = false
+	$"../level".spawn_day_ennemies()
 
 func game_over():
 	$out_game_panel/container/upgrades.visible = false

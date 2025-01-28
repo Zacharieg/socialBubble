@@ -14,6 +14,9 @@ var shield_position : float = 0 # from 0 to 1
 var shield_count : int = INITIAL_SHIELD_COUNT
 @export var shield_thickness = SHIELD_THICKNESS
 
+func _ready() -> void:
+	shield_position = .75 - .5 * shield_size
+
 func _draw():
 	for i in range(shield_count):
 		var start_angle = get_start_angle(i)
@@ -78,5 +81,4 @@ func is_ennemy_on_shield(ennemy : Ennemy, shield_number : int = 0) -> bool:
 
 func add_size(addition: float):
 	shield_position -= addition * .5
-	shield_size += addition * .5
-	queue_redraw()
+	shield_size += addition

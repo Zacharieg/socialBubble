@@ -14,6 +14,8 @@ signal upgrade(modifier)
 	CapacityDurationModifier.new(1.1),
 	CapacityDurationModifier.new(1.25),
 	ShieldAddedModifier.new(1),
+	MoreEnlargmentModifier.new(.5),
+	MoreEnlargmentModifier.new(1),
 ]
 
 var is_chosing := false
@@ -88,7 +90,7 @@ class CapacityCooldownModifier extends Modifier:
 	func _init(_mult) -> void:
 		multiplier = _mult
 	
-	func name() : return "Coolddown x " + str(multiplier)
+	func name() : return "Cooldown x " + str(multiplier)
 	
 	func modify(charac : Character):
 		charac.capacity.capacity_base_cooldown *= multiplier
@@ -110,8 +112,19 @@ class ShieldAddedModifier extends Modifier:
 	func _init(_add) -> void:
 		added = _add
 		
-	func name() : return "Add " + str(added) + " more shields"
+	func name() : return "Shields + " + str(added)
 	
 	func modify(charac : Character):
-		if charac.capacity is MoreShield:
-			charac.capacity.add_shield_count += added
+		charac.shield.shield_count += added
+
+class MoreEnlargmentModifier extends Modifier:
+	var added_size_boost = 1
+	
+	func _init(_added_boost) -> void:
+		added_size_boost = _added_boost
+		
+	func name() : return "Bigger shield up + " + str(added_size_boost)
+	
+	func modify(charac : Character):
+		if charac.capacity is Enlargment:
+			charac.capacity.shield_size_boost += added_size_boost
