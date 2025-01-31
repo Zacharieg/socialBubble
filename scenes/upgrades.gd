@@ -45,7 +45,7 @@ func setup_upgrades():
 
 func choose_upgrade(nb_upgrade):
 	is_chosing = false
-	print("choose upgrade")
+	#print("choose upgrade")
 	emit_signal("upgrade", market_upgrades[nb_upgrade])
 
 class Modifier:

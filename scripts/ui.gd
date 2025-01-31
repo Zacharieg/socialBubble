@@ -5,17 +5,17 @@ const DAY_PASS_TIME = 1.
 
 var game_paused := false
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_pressed():
 		if event.is_action_pressed("pause"):
 			get_tree().change_scene_to_file("res://main.tscn")
 		emit_signal("any_action_pressed")
-				
+	#print(event)
 
 func day_pass(day_nb):
-	print("day pass")
+	#print("day pass")
 	get_tree().paused = true
-	
+	#print("day nb ", day_nb)
 	if day_nb != 1 : 
 		$out_game_panel/container/upgrades.visible = true
 		$out_game_panel/container/upgrades.setup_upgrades()
@@ -26,7 +26,9 @@ func day_pass(day_nb):
 		
 	$out_game_panel/container/title.text = "Day " + str(day_nb)
 	
-	$ui_animation.play("ui_fade_in")
+	if day_nb == 1:$ui_animation.play("ui_display_after_intro")
+	else:$ui_animation.play("ui_fade_in")
+	
 	await $ui_animation.animation_finished
 	
 	if day_nb != 1 :

@@ -63,8 +63,8 @@ func hurt(ennemy : Ennemy):
 	$bubble/bubble_sprite.play("default")
 
 func _on_upgrade(mod : Upgrades.Modifier):
-	print("apply")
-	print(mod)
+	#print("apply")
+	#print(mod)
 	mod.modify(self)
 
 func _on_capacity_fired(cap : Capacity) -> void:
