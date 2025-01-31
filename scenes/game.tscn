@@ -1,4 +1,4 @@
-[gd_scene load_steps=178 format=3 uid="uid://dn506tw3f4unj"]
+[gd_scene load_steps=173 format=3 uid="uid://dn506tw3f4unj"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ap1hq"]
 [ext_resource type="PackedScene" uid="uid://ix2oq52a3tjn" path="res://objects/character.tscn" id="1_hh7su"]
@@ -13,13 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://dc2pn43i4s24e" path="res://ressources/Vignetage.png" id="9_5yadu"]
 [ext_resource type="Script" path="res://scripts/ui.gd" id="9_7nptc"]
 [ext_resource type="Script" path="res://scenes/upgrades.gd" id="10_31mmv"]
-[ext_resource type="Texture2D" uid="uid://bsb363srsuppm" path="res://ressources/anim_intro/GGJ25 Game on 1.png" id="10_maeak"]
-[ext_resource type="Texture2D" uid="uid://cxbvurtbp6vul" path="res://ressources/anim_intro/GGJ25 Game on 2.png" id="11_bk8yq"]
 [ext_resource type="Script" path="res://scripts/lifebar.gd" id="11_of86p"]
-[ext_resource type="Texture2D" uid="uid://vwe2gpfaqyib" path="res://ressources/anim_intro/GGJ25 Game on 3.png" id="12_t3gsr"]
 [ext_resource type="Script" path="res://scripts/main_camera.gd" id="13_56kp4"]
-[ext_resource type="Texture2D" uid="uid://ctf088ldvw8c" path="res://ressources/anim_intro/GGJ25 Game on 4.png" id="13_hv4fs"]
-[ext_resource type="Texture2D" uid="uid://iv772hoycsuv" path="res://ressources/anim_intro/GGJ25 Game on 5.png" id="14_cc1j0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v0f0t"]
 
@@ -1068,66 +1063,42 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Animation" id="Animation_cu8vk"]
-length = 6.0
+[sub_resource type="Animation" id="Animation_fprjg"]
+resource_name = "idle"
+length = 20.0
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("anim_sprite:texture")
+tracks/0/path = NodePath("level/character_Sprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 5.16667, 10.2, 15.1333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [&"idle_ordi", &"idle_console", &"idle_cat", &"idle_book"]
+}
+
+[sub_resource type="Animation" id="Animation_bab0p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level/character_Sprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_maeak")]
-}
-
-[sub_resource type="Animation" id="Animation_wbrxi"]
-resource_name = "idle"
-length = 16.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("anim_sprite:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.33333, 2.6, 4.06667, 4.46667, 5.76667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("10_maeak"), ExtResource("10_maeak"), ExtResource("11_bk8yq"), ExtResource("12_t3gsr"), ExtResource("13_hv4fs"), ExtResource("14_cc1j0")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim_sprite:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1.76667, 2.56667, 2.6, 3.4, 4.03333, 4.06667, 6.63333, 7.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.235294), Color(1, 1, 1, 1), Color(1, 1, 1, 0.827362), Color(1, 1, 1, 0.235294), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("tuto:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0666667, 7.93333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
+"values": [&"idle_ordi"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u318d"]
 _data = {
-"RESET": SubResource("Animation_cu8vk"),
-"idle": SubResource("Animation_wbrxi")
+"RESET": SubResource("Animation_bab0p"),
+"idle": SubResource("Animation_fprjg")
 }
 
 [sub_resource type="Animation" id="Animation_nswt7"]
@@ -1249,7 +1220,7 @@ texture = ExtResource("7_flkgm")
 [node name="character_Sprite2D" type="AnimatedSprite2D" parent="level"]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_1ipc6")
-animation = &"idle_book"
+animation = &"idle_ordi"
 autoplay = "idle_ordi"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="level/character_Sprite2D"]
