@@ -14,8 +14,7 @@ signal upgrade(modifier)
 	CapacityDurationModifier.new(1.1),
 	CapacityDurationModifier.new(1.25),
 	ShieldAddedModifier.new(1),
-	MoreEnlargmentModifier.new(.5),
-	MoreEnlargmentModifier.new(1),
+	MoreEnlargmentModifier.new(.075),
 ]
 
 var is_chosing := false
@@ -38,7 +37,7 @@ func setup_upgrades():
 	for button in buttons:
 		var modifier : Modifier = available_modifiers[randi()%len(available_modifiers)]
 		while market_upgrades.has(modifier):
-			modifier = available_modifiers[randi()%len(available_modifiers)]
+			modifier = available_modifiers[randi() % len(available_modifiers)]
 		market_upgrades.append(modifier)
 		button.text = modifier.name()
 	buttons[0].grab_focus()
@@ -128,3 +127,6 @@ class MoreEnlargmentModifier extends Modifier:
 	func modify(charac : Character):
 		if charac.capacity is Enlargment:
 			charac.capacity.shield_size_boost += added_size_boost
+			if charac.capacity.is_running:
+				charac.capacity.end_effect(charac)
+				charac.capacity.apply_effect(charac)

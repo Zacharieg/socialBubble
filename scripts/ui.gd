@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 signal any_action_pressed
-const DAY_PASS_TIME = 1.
 
 var game_paused := false
 
@@ -9,11 +8,13 @@ func _input(event: InputEvent) -> void:
 	if event.is_pressed():
 		if event.is_action_pressed("pause"):
 			get_tree().change_scene_to_file("res://main.tscn")
-		emit_signal("any_action_pressed")
+		else:
+			emit_signal("any_action_pressed")
 	#print(event)
 
 func day_pass(day_nb):
-	#print("day pass")
+	$day/Label.text = "Day: " + str(day_nb)
+	
 	get_tree().paused = true
 	#print("day nb ", day_nb)
 	if day_nb != 1 : 
@@ -33,8 +34,6 @@ func day_pass(day_nb):
 	
 	if day_nb != 1 :
 		await $out_game_panel/container/upgrades.upgrade
-	else :
-		await get_tree().create_timer(DAY_PASS_TIME).timeout
 	
 	$ui_animation.play("ui_fade_out")
 	await $ui_animation.animation_finished

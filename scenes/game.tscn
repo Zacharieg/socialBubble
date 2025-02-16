@@ -1,4 +1,4 @@
-[gd_scene load_steps=174 format=3 uid="uid://dn506tw3f4unj"]
+[gd_scene load_steps=175 format=3 uid="uid://dn506tw3f4unj"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ap1hq"]
 [ext_resource type="PackedScene" uid="uid://ix2oq52a3tjn" path="res://objects/character.tscn" id="1_hh7su"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scenes/upgrades.gd" id="10_31mmv"]
 [ext_resource type="Script" path="res://scripts/lifebar.gd" id="11_of86p"]
 [ext_resource type="Script" path="res://scripts/main_camera.gd" id="13_56kp4"]
+[ext_resource type="Script" path="res://scripts/day_displayer.gd" id="15_qmbvy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_v0f0t"]
 
@@ -1063,6 +1064,21 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_bab0p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("level/character_Sprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle_ordi"]
+}
+
 [sub_resource type="Animation" id="Animation_fprjg"]
 resource_name = "idle"
 length = 20.0
@@ -1078,21 +1094,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [&"idle_ordi", &"idle_console", &"idle_cat", &"idle_book"]
-}
-
-[sub_resource type="Animation" id="Animation_bab0p"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("level/character_Sprite2D:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"idle_ordi"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u318d"]
@@ -1126,6 +1127,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_uilaw"]
+resource_name = "ui_display_after_intro"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ui/out_game_panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.3, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ui/out_game_panel:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_uu2vu"]
@@ -1179,34 +1208,6 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0.466667, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
-[sub_resource type="Animation" id="Animation_uilaw"]
-resource_name = "ui_display_after_intro"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ui/out_game_panel:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.3, 1.96667),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ui/out_game_panel:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.96667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -1362,6 +1363,25 @@ script = ExtResource("11_of86p")
 [node name="lifepoint_separator" type="HBoxContainer" parent="ui/lifebar"]
 layout_mode = 2
 theme_override_constants/separation = 20
+
+[node name="day" type="MarginContainer" parent="ui"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -96.0
+offset_top = -13.0
+offset_right = -17.0
+offset_bottom = 30.0
+grow_horizontal = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+script = ExtResource("15_qmbvy")
+
+[node name="Label" type="Label" parent="ui/day"]
+layout_mode = 2
+text = "Day: XX"
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(256, 256)

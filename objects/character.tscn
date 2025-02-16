@@ -315,9 +315,6 @@ offset_bottom = 40.0
 layout_mode = 2
 
 [node name="Enlargment" parent="." node_paths=PackedStringArray("jaugeSprite") instance=ExtResource("13_xidrx")]
-shield_size_boost = 1.5
-capacity_name = "Enlargment"
-capacity_base_cooldown = 15.0
 jaugeSprite = NodePath("../bubble/jauge")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

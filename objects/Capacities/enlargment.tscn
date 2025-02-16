@@ -4,5 +4,7 @@
 
 [node name="Enlargment" type="Node"]
 script = ExtResource("1_3rodg")
-capacity_base_cooldown = 180.0
-capacity_base_duration = 5.0
+shield_size_boost = 0.1
+capacity_name = "Enlargment"
+capacity_base_cooldown = 120.0
+capacity_base_duration = 15.0

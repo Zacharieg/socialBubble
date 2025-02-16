@@ -2,6 +2,7 @@ extends Control
 
 func _ready():
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	get_tree().paused = false
 
 func _input(event) :
 	if event.is_pressed():

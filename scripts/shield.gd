@@ -10,6 +10,7 @@ const INITIAL_SHIELD_COUNT : int = 1
 
 var shield_speed : float = SHIELD_INITIAL_SPEED
 var shield_size : float = SHIELD_INITIAL_SIZE # from 0 to 1
+var shield_size_boost : float = 0 # from 0 to 1
 var shield_position : float = 0 # from 0 to 1
 var shield_count : int = INITIAL_SHIELD_COUNT
 @export var shield_thickness = SHIELD_THICKNESS
@@ -26,9 +27,28 @@ func _draw():
 			start_angle,
 			start_angle + get_shield_circ(),
 			100,
-			Color.WHITE if i == 0 else Color(1,1,1,0.5),
+			Color.WHITE,
 			shield_thickness
 		)
+		if shield_size_boost > 0:
+			draw_arc(
+				Vector2.ZERO,
+				SHIELD_RADIUS,
+				start_angle - PI * shield_size_boost / shield_count, # 2 * .5 simplified
+				start_angle,
+				100,
+				Color(1,1,1,0.5),
+				shield_thickness
+			)
+			draw_arc(
+				Vector2.ZERO,
+				SHIELD_RADIUS,
+				start_angle + get_shield_circ(),
+				start_angle + get_shield_circ() + PI * shield_size_boost / shield_count,
+				100,
+				Color(1,1,1,0.5),
+				shield_thickness
+			)
 
 func _process(delta: float) -> void:
 	var direction = 0
@@ -66,13 +86,9 @@ func is_ennemy_on_shields(ennemy : Ennemy) -> bool:
 	return false
 
 func is_ennemy_on_shield(ennemy : Ennemy, shield_number : int = 0) -> bool:
-	var ennemy_angle = ennemy.rotation
-	while ennemy_angle < 0:
-		ennemy_angle += 2*PI
-	while ennemy_angle > 2*PI:
-		ennemy_angle -= 2*PI
-	var start_angle = get_start_angle(shield_number)
-	var end_angle = get_end_angle(shield_number)
+	var ennemy_angle = fposmod(ennemy.rotation, 2 * PI)
+	var start_angle = fposmod(get_start_angle(shield_number) - PI * shield_size_boost / shield_count, 2 * PI)
+	var end_angle = fposmod(get_end_angle(shield_number) + PI * shield_size_boost / shield_count, 2 * PI)
 	
 	if start_angle < end_angle :
 		return ennemy_angle > start_angle and ennemy_angle < end_angle
@@ -82,3 +98,6 @@ func is_ennemy_on_shield(ennemy : Ennemy, shield_number : int = 0) -> bool:
 func add_size(addition: float):
 	shield_position -= addition * .5
 	shield_size += addition
+	
+func add_temp_size(addition: float):
+	shield_size_boost += addition
