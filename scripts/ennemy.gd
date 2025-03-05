@@ -13,6 +13,8 @@ var character : Character = null
 
 func _ready() -> void:
 	visible = false
+	var delete = func(): queue_free()
+	character.dead.connect(delete)
 
 func _process(delta: float) -> void:
 	if not dead:

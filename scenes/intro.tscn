@@ -25,11 +25,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("1_0c3mw")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim_sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_wbrxi"]
 resource_name = "idle"
-length = 16.0
-loop_mode = 2
+length = 9.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -37,7 +48,7 @@ tracks/0/path = NodePath("anim_sprite:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.33333, 2.6, 4.06667, 4.46667, 5.76667),
+"times": PackedFloat32Array(0, 1.33333, 2.6, 4.06667, 5.06667, 5.76667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("1_0c3mw"), ExtResource("1_0c3mw"), ExtResource("9_nqjob"), ExtResource("10_1ww5o"), ExtResource("11_67t7j"), ExtResource("12_tgx45")]
@@ -49,10 +60,10 @@ tracks/1/path = NodePath("anim_sprite:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.76667, 2.56667, 2.6, 3.4, 4.03333, 4.06667, 6.63333, 7.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(1.33333, 2.03333, 2.53333, 3.03333, 3.53333, 4.06667, 4.46667, 6.63333, 7.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.235294), Color(1, 1, 1, 1), Color(1, 1, 1, 0.827362), Color(1, 1, 1, 0.235294), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.235294), Color(1, 1, 1, 0.827362), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false

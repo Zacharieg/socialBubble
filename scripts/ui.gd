@@ -42,10 +42,16 @@ func day_pass(day_nb):
 
 func game_over():
 	$out_game_panel/container/upgrades.visible = false
+	$"../character".visible = false
 	$out_game_panel/container/title.text = "Game Over"
-	$out_game_panel/container/subtitle.text = "Press any button to continue"
-	$ui_animation.play("ui_fade_in")
+	$out_game_panel/container/subtitle.text = "Press escape to leave or any other button to restart"
+	
+	$"../level/character_Sprite2D/AnimationPlayer".stop()
+	$"../level/character_Sprite2D".play("game_over")
+	await $"../level/character_Sprite2D".animation_finished
+	
 	get_tree().paused = true
+	$ui_animation.play("ui_fade_in")
 	
 	await get_tree().create_timer(1).timeout
 	await self.any_action_pressed
